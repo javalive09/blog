@@ -4,6 +4,7 @@ date: 2016-02-17 09:47:56
 tags:
 ---
 
+[github 模板集合](https://github.com/github/gitignore)
 
 文件 .gitignore 的格式规范如下：
 

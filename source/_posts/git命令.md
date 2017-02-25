@@ -54,7 +54,8 @@ git commit --amend // 修改提交信息
 # 远程仓库
 ```
 git remote -v
-git remote add origin https://github.com/javalive09/CodeBag.git
+git remote add origin https://github.com/javalive09/CodeBag.git //添加远程仓库
+git remote set-url origin https://github.com/javalive09/CodeBag.git //修改远程仓库url
 git push origin --delete <branchName>  //删除远程仓库
 git push origin master //推送到远程仓库
 git clone https://github.com/javalive09/CodeBag.git // 从远程仓库clone

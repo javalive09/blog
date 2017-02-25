@@ -309,7 +309,7 @@ final 修饰类，表示类不可以被继承，断子绝孙
 数组的拷贝System.lang.arrayCopy();效率最高。用的事拷贝整块内存的方式
 数组的内存模型（二维数组）：int[][] scores = new int[3][2];
 多维数组的length以最外层的大小为准：socres.length = 3;
-![](/uploads/array.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/array.jpg)
 
 ## 访问权限控制
 private：私有权限
@@ -426,20 +426,24 @@ gc线程工作时发现引用计数器为0的对象就会回收它。
 ### 弱引用 WeakReference
 某个对象只有弱引用时，当gc线程回收的时候，它一定会被回收。
 ### 幽灵引用 PhantomReference
-配合ReferenceQueue可以让我们准确地知道对象何时被从内存中删除。
+配合ReferenceQueue可以让我们准确地知道对象何时被从内存中删除。[codebag demo](https://github.com/javalive09/CodeBag/blob/master/sample/src/main/java/com/javalive09/sample/project/raventech/reference.java)
 ```
     public class PhantomReferenceTest {
 	    public static void main(String... args){
-		    ReferenceQueue rq= new ReferenceQueue(); 
-		    A a= new A();
-		    a.s="hello";
-		    Reference r= new PhantomReference(a,rq);
-		    a=null;
+		    ReferenceQueue rq = new ReferenceQueue(); 
+		    A a = new A();
+		    a.s ="hello";
+		    Reference r = new PhantomReference(a, rq);
+		    a = null;
 		    System.gc();	
-		    Reference ref= (Reference) rq.poll();
-		    while(ref!=null){
-			    System.out.println(ref.get());
-		    }
+		    
+		    new Thread(new Runnable() {
+		    	public void run() {
+		    		while(Reference ref = rq.remove != null )  {
+						System.out.println(ref.get());
+		    		}
+		    	}
+		    }).start();
 	    } 
     }
     class A{

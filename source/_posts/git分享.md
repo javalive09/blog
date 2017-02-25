@@ -116,19 +116,19 @@ git reflog show
 
 # .git文件夹结构及git内部原理
 ## git-stage 暂存区
-![](/uploads/git-stage.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/git-stage.jpg)
 
 ## git-checkout 检出
-![](/uploads/git-checkout.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/git-checkout.jpg)
 
 ## git-diff 对比差异
-![](/uploads/git-diff.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/git-diff.jpg)
 
 ## git-reset 重置
-![](/uploads/git-reset.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/git-reset.jpg)
 
 ## git-repos-detail 版本库
-![](/uploads/git-repos-detail.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/git-repos-detail.jpg)
 
 ## .git 文件夹结构
 HEAD

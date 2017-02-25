@@ -101,6 +101,7 @@ animation自定义 重写方法applyTransformation()改变Transformation
 
 
 ### 属性动画 property anim
+[nineoldandroids sample](https://github.com/JakeWharton/NineOldAndroids/tree/master/sample/src/com/jakewharton/nineoldandroids/sample)
 动画类 valueAnimator，objectAnimator
 配置xml文件 alpha, rotate, scale, translate
 启动 AnimatorInflater.loadAnimator(context, R.anim.x);
@@ -698,7 +699,7 @@ y 参数的意义是文字的底部的坐标。
 
 ## 像素的结构
 颜色（一个像素用一个int表示，32位真彩色）
-![](/uploads/pixel.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/pixel.jpg)
 alpha通道：透明度，0~255 共256级透明度
 一张图片所占内存 = wide * hight * 4 byte
 
@@ -884,7 +885,7 @@ public void setScrollY(int value) {
 scroll方法针对的是view中的内容。
 如view.scrollTo(50,0); 表示的是针对内容的（0，0）坐标view滚动了50个像素。
 展现的是，内容向左边移动了50个像素。
-![](/uploads/scroll.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/scroll.jpg)
 
 ## LayoutInflater 的inflate(int resource, ViewGroup root, boolean attachToRoot)方法研究
 ### 情况一： root =null,  attachToRoot = false;
@@ -1146,5 +1147,5 @@ pw.showAtLocation(this, Gravity.NO_GRAVITY, 0, statusBarHeight);
 ------
 
 # 设备的适配
-![](/uploads/fitres.jpg)
+![](http://7xoxmg.com1.z0.glb.clouddn.com/fitres.jpg)
 

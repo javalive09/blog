@@ -80,10 +80,6 @@ deploy:
   repository: git@github.com:javalive09/javalive09.github.io.git
   branch: master
 
-# Social links
-social:
-  GitHub: https://github.com/javalive09
-
 # speed up
 html_minifier:
   enable: true
