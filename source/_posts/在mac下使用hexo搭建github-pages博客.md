@@ -11,6 +11,14 @@ homebrew官网：[http://brew.sh/index_zh-cn.html](http://brew.sh/index_zh-cn.ht
 ``` bash
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+卸载命令：[参考](http://superuser.com/questions/203707/how-to-uninstall-homebrew-mac-os-x-package-manager)
+```
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+
+
+```
+
 
 # 安装git
 
