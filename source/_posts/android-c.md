@@ -32,16 +32,40 @@ task是任务的概念 本质是个栈 一个task任务对应一个acivity集合
 一个task中可以有多个应用的activity。
 application是应用的概念，一个application可以有多个task任务（多个栈），默认的application里的activity都在一个栈中。
 
-## task控制
+## task控制 
+[官方文档](https://developer.android.com/guide/topics/manifest/activity-element.html#aff)
+
+### taskAffinity
+android:taskAffinity. 与 Activity 有着亲和关系的任务。从概念上讲，具有相同亲和关系的 Activity 归属同一任务（从用户的角度来看，则是归属同一“应用”）。 任务的亲和关系由其根 Activity 的亲和关系确定。
+
 ### android:allowTaskReparenting
-是否允许此activity，回到原来的task栈中，认祖归宗。 默认false，保留在启动task中。如一个应用启动了浏览器web页面activity，如果allowTaskReparenting=true，这个应用退到后台，浏览器启动时会把这个web页面activity移到浏览器的栈中。
+是否允许此activity，回到原来的task栈中，认祖归宗（更贴切是含义，应该是该子任务是否允许被主任务认领）。 默认false，保留在启动task中。如一个应用启动了浏览器web页面activity，如果这个浏览器web页activity的allowTaskReparenting=true，这个应用退到后台（按home键），浏览器启动时会把这个web页面activity移到浏览器的栈中。
+Activity 的亲和关系由 taskAffinity 属性定义。 任务的亲和关系通过读取其根 Activity 的亲和关系来确定。因此，按照定义，根 Activity 始终位于具有相同亲和关系的任务之中。 由于具有“singleTask”或“singleInstance”启动模式的 Activity 只能位于任务的根，因此更改父项仅限于“standard”和“singleTop”模式。
+> 注：
+如果之前启动过浏览器activity，那在recenttask列表中切换回浏览器activity，不会reparent。
+如果之前没有启动过浏览器activity，退出当前应用，或杀掉应用，再点击launcher icon 启动browser则不会reparent。
+reparent的点：是调用应用在后台并且没有被回收，然后点击被调用activity应用(allowTaskReparenting=true)的launcher icon 才会reparent。
+
 ### android:alwaysRetainTaskState
-是否保持task状态，默认false，是否保留栈列表。true的话会清除task列表。只适用于根activity，其他的Activity都会被忽略。如浏览器mainActivity设置。
+是否保持task状态，默认false，是否保留栈列表。true的话不会清除task列表。只适用于根activity，其他的Activity都会被忽略。如浏览器mainActivity设置。
+
 ### android:clearTaskOnLaunch
 启动时是否清除task，默认false。只适用于根activity。不想保存task状态。
+> 注：
+在recententtask列表中切换时不会clear。
+点击home回到桌面，触发launcher的icon 图标启动时才会clear。
+
 ### android:finishOnTaskLaunch
-这个属性和android:allowReparenting属性相似，不同之处在于allowReparenting属性是重新宿主到有共同affinity的task中，而finishOnTaskLaunch属性是销毁实例。
-### :configChanges
+每当用户再次启动其任务（在主屏幕上选择任务）时，是否应销毁现有 Activity 实例 
+> 注：
+如果是true，无论是别的应用（别的task）调用，还是当前应用（相同task）应用调用。点击home，在桌面启动launcher icon时 都会销毁这个activity。
+
+### android:autoRemoveFromRecents
+由具有该属性的 Activity 启动的任务是否一直保留在概览屏幕中，直至任务中的最后一个 Activity 完成为止。
+> 注：
+用于root activity，当此应用退出后，recent task中不保留。
+
+### android:configChanges
 在Activity中添加了 android:configChanges属性，目的是当所指定属性(Configuration Changes)发生改变时，通知程序调用 onConfigurationChanged()函数。
 ### TaskAffinity
 activity所在task栈的标记。是否属于某一逻辑关系task里。

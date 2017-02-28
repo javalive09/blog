@@ -1,6 +1,6 @@
 ---
 title: 在mac下使用hexo搭建github pages博客
-date: 2017-02-07 18:41:21
+date: 2014-02-07 18:41:21
 tags:
 ---
 
@@ -70,12 +70,6 @@ theme: next
 ```
 
 ```
-# Social links
-social:
-  GitHub: https://github.com/javalive09
-```
-
-```
 # speed up
 html_minifier:
   enable: true
@@ -126,6 +120,17 @@ menu:
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
 avatar: /uploads/avatar.jpg
+```
+
+```
+# Social Links
+# Key is the link label showing to end users.
+# Value is the target link (E.g. GitHub: https://github.com/iissnan)
+social:
+  GitHub: https://github.com/javalive09
+  #Wechat: http://7xoxmg.com1.z0.glb.clouddn.com/Wechat-peter.jpeg
+  Stack Overflow: http://stackoverflow.com/users/4674672/peter-zhang
+  工具网站: /about
 ```
 
 ```
