@@ -775,7 +775,112 @@ If the whole class is targeting newer APIs, you can place the annotation on the 
 ## 总结
 综上，@Target的作用在于提示：使用高编译版本的代码，为了通用性兼容运行此代码的低版本平台。要求程序员做出区分对待的加载。
 
+# 任务调度的几种方法
+## Timer
+```
+public class Timer_ extends Entry {
 
+    Timer timer = new Timer();
+    long delay = 1000; // milliseconds
+    long period = 1000; // milliseconds
+    int count = 0;
+
+    public void schedule() {
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                LogUtil.i("count =" + count++);
+            }
+        }, delay, period);
+
+    }
+
+    public void cancel() {
+        timer.cancel();
+    }
+
+}
+
+```
+## ScheduledExecutorService
+```
+public class ScheduledExecutorService_ extends Entry {
+
+    ScheduledExecutorService service = Executors.newScheduledThreadPool(10);
+    long delay = 1000; // milliseconds
+    long period = 1000; // milliseconds
+    int count = 0;
+
+    public void schedule() {
+        service.scheduleAtFixedRate(new Runnable() {
+            @Override
+            public void run() {
+                LogUtil.i("count =" + count++);
+            }
+        }, delay, period, TimeUnit.MILLISECONDS);
+    }
+
+    public void cancel() {
+        service.shutdownNow();
+    }
+
+}
+```
+
+## Cron4j
+```
+public class Cron4j_ extends Entry {
+
+    private Scheduler scheduler = new Scheduler();
+    private String schedulingPattern1 = "30 10 * * *"; // 10:30  everyday
+    private String schedulingPattern2 = "* * * * *"; // every minute
+    private int count =0;
+
+    public void schedule() {
+        scheduler.schedule(schedulingPattern2, new Runnable() {
+            @Override
+            public void run() {
+                LogUtil.i("count =" + count++);
+            }
+        });
+
+        scheduler.start();
+    }
+
+    public void cancel() {
+        scheduler.stop();
+    }
+
+}
+```
+
+## AlarmManager
+```
+public class AlarmClock extends Entry {
+
+    private static final int INTERVAL = 1000 * 60 * 60 * 24;// 24h
+
+    public void setClock() {
+        Intent intent = new Intent(getActivity(), AlarmClockReceiver.class);
+        intent.setAction("abc");
+        PendingIntent sender = PendingIntent.getBroadcast(getActivity(),
+                1, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        // Schedule the alarm!
+        AlarmManager am = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 52);
+        calendar.set(Calendar.SECOND, 1);
+        calendar.set(Calendar.MILLISECOND, 1);
+
+        long time = calendar.getTimeInMillis();
+        long t = System.currentTimeMillis();
+        am.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, time, INTERVAL, sender);
+    }
+    
+}
+```
 
 
 
