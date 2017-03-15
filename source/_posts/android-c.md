@@ -569,6 +569,20 @@ public class MainActivity extends AppCompatActivity {
 
 > 注：广播启动activity必须加入FLAG_ACTIVITY_NEW_TASK标记。
 
+## 本地广播
+### 注册
+```
+LocalBroadcastManager.getInstance(this).registerReceiver(receiver, intentFilter);
+```
+### 取消注册
+```
+LocalBroadcastManager.getInstance(this).unregisterReceiver(receiver);
+```
+### 发送广播
+```
+LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(MyCastReceiver.ACTION));
+```
+
 # 进程的优先级
 ## 1.前台进程
 正交互的前台显示的进程。
