@@ -9,8 +9,6 @@ tags:
 Android M's name was just announced officially days ago. The final version is almost there and would be released not so long.
 > android M的名字在几天前被官方发布。最终的正式版本也即将来临。
 
-![](http://7xoxmg.com1.z0.glb.clouddn.com/git-workflow.png)
-
 Although Android is being keep developed but the latest update to Android M is totally different since there is some major change that would change everything like new Runtime Permission. Surprisingly it is not much talked about in Android Developer community even though it is extremely important and may cause some big trouble in the near future.
 > android系统在不断的被开发着，最近更新的android M和以往有很大不同，像运行时权限的加入将会引起颠覆性的变化。奇怪的是android 开发社区对此谈论很少，尽管这很重要并且可能会引起一些大问题在不远的将来。
 
@@ -30,11 +28,17 @@ No surprise why there are so many bad guys trying to collect user's personal dat
 Android team also know this concern. 7 year passed, finally permission system is redesigned. In Android 6.0 Marshmallow, application will not be granted any permission at installation time. Instead, application has to ask user for a permission one-by-one at runtime.
 > android team 也知道这个事。7年过去了，最终权限系统做了重新的设计。在android6.0 棉花糖这个版本里，应用程序在安装时不会被授予任何权限。而是在运行时，一个一个的向用户申请权限。
 
+![](https://inthecheesefactory.com/uploads/source/blog/mpermission/runtimepermission.jpg)
+
 Please note that permission request dialog shown above will not launch automatically. Developer has to call for it manually. In the case that developer try to call some function that requires a permission which user has not granted yet, the function will suddenly throw an Exception which will lead to the application crashing.
 > 需要注意的是权限申请弹框不会自动弹出。开发者需要手动调用。在开发者试图调用某个用户没有授予的权限的时候，会抛出异常导致程序崩溃。
 
+![](https://inthecheesefactory.com/uploads/source/blog/mpermission/runtimepermissioncrash.jpg)
+
 Besides, user is also able to revoke the granted permission anytime through phone's Settings application.
 > 另外，用户可以在手机的设置程序里面撤销授予的权限。
+
+![](https://inthecheesefactory.com/uploads/source/blog/mpermission/permissionsrevoke.jpg)
 
 You might already feel like there is some cold wind blowing through your arms ... If you are an Android Developer, you will suddenly know that programming logic is totally changed. You cannot just call a function to do the job like previous but you have to check for the permission for every single feature or your application will just simply crash !
 > 如果你是android开发者，可能对此会有种寒风吹胳膊一样的感觉。你可能会意识到编程逻辑完全变了。不能像以前一样进行功能调用了，需要对每一个功能调用申请权限，否则将会是程序崩溃。
@@ -57,11 +61,15 @@ Don't worry. Android team has already thought about it. If the application's tar
 As a result, application will run perfectly like previous. Anyway please note that user still can revoke a permission after that ! Although Android 6.0 warn the user when they try to do that but they can revoke anyway.
 > 然后，程序将会像以前一样完美运行。另外请注意用户仍然可以在安装后撤销权限！尽管android6.0警示用户尝试撤销的操作，但是用户可以那么做。
 
+![](https://inthecheesefactory.com/uploads/source/blog/mpermission/mpermission22denyperm_1.jpg)
+
 Next question in your head right now. So will my application crash?
 > 现在接下来的问题是，你的程序会崩溃么？
 
 Such a kindness sent from god delivered through the Android team. When we call a function that requires a permission user revoked on application with targetSdkVersion less than 23, no any Exception will be thrown. Instead it will just simply do nothing. For the function that return value, it will return either null or 0 depends on the case.
 > 善意的主把这事传递给了android team。当我们在targetSdkVersion 小于23的情况下，我们申请了一个用户拒绝的权限，不会抛出任何异常。什么也不会发生。在这种情况下，返回值将是null或0。
+
+![](https://inthecheesefactory.com/uploads/source/blog/mpermission/targetsdkversion2223.jpg)
 
 But don't be too happy. Although application would not be crashed from calling a function. It may still can crash from what that application does next with those returned value.
 > 别高兴的太早。尽管程序不会因为调用功能导致崩溃。但是程序将可能因为返回值崩溃。
@@ -195,6 +203,7 @@ Next step is we have to create another function to check that permission is gran
 
 Permissions are grouped into Permission Group like table below.
 > 权限是按照权限组的形式来分组的，如下表：
+
 ![](https://inthecheesefactory.com/uploads/source/blog/mpermission/permgroup.png)
 
 If any permission in a Permission Group is granted. Another permission in the same group will be automatically granted as well. In this case, once WRITE_CONTACTS is granted, application will also grant READ_CONTACTS and GET_ACCOUNTS.
@@ -218,6 +227,7 @@ Source code used to check and ask for permission is Activity's checkSelfPermissi
 
 If permission has already been granted, insertDummyContact() will be suddenly called. Otherwise, requestPermissions will be called to launch a permission request dialog like below.
 > 如果权限已经授予了，会直接调用insertDummyContact()，否则会弹出一个请求弹窗。
+
 ![](https://inthecheesefactory.com/uploads/source/blog/mpermission/requestpermission.jpg)
 
 No matter Allow or Deny is chosen, Activity's onRequestPermissionsResult will always be called to inform a result which we can check from the 3rd parameter, grantResults, like this:
@@ -252,6 +262,8 @@ If you want to punch some wall, it is a good time now ...
 
 If user denied a permission. In the second launch, user will get a "Never ask again" option to prevent application from asking this permission in the future.
 > 如果用户拒绝了权限。下次再申请时，用户会看见一个不在提醒的选项，防止程序以后再弹请求弹窗。
+
+![](https://inthecheesefactory.com/uploads/source/blog/mpermission/neveraskagain.jpg)
 
 If this option is checked before denying. Next time we call requestPermissions, this dialog will not be appeared for this kind of permission anymore. Instead, it just does nothing.
 > 如果在拒绝权限后选择了这个。下次请求权限时，弹窗不会再出现，不会触发任何东西。
@@ -294,6 +306,7 @@ However it is quite bad in term of UX if user does something but there is nothin
 
 The result are rational dialog will be shown when this permission is requested for the first time and also be shown if user has ever marked that permission as Never ask again. For the latter case, onRequestPermissionsResult will be called with PERMISSION_DENIED without any permission grant dialog.
 > 当第一次申请权限的时候，或者请求用户标记过不再显示的权限的时候，说明弹窗会弹出。后一种情况，onRequestPermissionsResult会返回PERMISSION_DENIED，不会弹出请求框。
+
 ![](https://inthecheesefactory.com/uploads/source/blog/mpermission/rationaledialog.jpg)
 
 # Asking for multiple permissions at a time
@@ -470,6 +483,7 @@ What is does it exactly the same as I described above but just with shorter and 
 
 As mentioned above, a permission can be revoked anytime through phone's Settings.
 > 如上面提到的，权限可以随时在setting中收回。
+
 ![](https://inthecheesefactory.com/uploads/source/blog/mpermission/permissionsrevoke.jpg)
 
 So what will happen if permission is revoked when application is opened? I have already given it a try and found that application's process is suddenly terminated. Everything inside application just simply stopped (since it is already terminated ...). It sounds make sense to me anyway since if OS allows the application to go on its process, it may summon Freddy to my nightmare. I mean even worse nightmare than currently is ...
