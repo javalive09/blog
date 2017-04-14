@@ -327,6 +327,22 @@ startForeGround
         startForeground(1, note);
 
 ```
+```
+        Notification.Builder builder = new Notification.Builder(this.getApplicationContext());
+        builder.setLargeIcon(BitmapFactory.decodeResource(this.getResources(), R.drawable.ic_launcher))
+                .setContentTitle(getString(R.string.tcp_content_title))
+                .setSmallIcon(R.drawable.ic_launcher)
+                .setContentText(getString(R.string.tcp_content_txt))
+                .setWhen(System.currentTimeMillis());
+        Intent resultIntent = new Intent(this, MainActivity.class);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(resultPendingIntent);
+        Notification notification = builder.build();
+        startForeground(110, notification);
+
+```
 
 ## IntentService的应用场景
 开启一个新的IntentService 就会在它内部新建一个Thread 并在其上加了一个Looper。执行完毕后自动关闭service。
