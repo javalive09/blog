@@ -145,4 +145,22 @@ git archive -o latest.zip HEAD  //基于最新提交建立归档文件latest.zip
 git archive -o partial.tar HEAD src doc  //只将目录src和doc建立到归档partial.tar中
 git archive --format=tar --prefix=1.0/ v1.0 | gzip > foo-1.0.tar.gz  //基于里程碑v1.0建立归档，并且为归档中文件添加目录前缀1.0
 ```
-
+# 修改提交信息
+## 修改最近一条消息
+### 没有push到服务器
+```
+git commit --amend
+```
+### push到服务器
+```
+git commit --amend
+git push -f origin master
+```
+## 修改以前的消息
+```
+git rebase -i HEAD~5
+```
+修改vim中弹出的信息，把pick 修改成 r 保存后退出
+```
+git push -f origin master
+```
