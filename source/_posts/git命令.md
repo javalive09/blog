@@ -92,7 +92,7 @@ git show 1.0
 git tag -a v1.0 -m "新加tag"  
 git tag -d v1.0  
 git push origin --tags  
-git push origin :refs/tags/<tag name>  
+git push origin :refs/tags/<tag name>  //删除远程tag
 ```
 
 # 分支
@@ -101,7 +101,7 @@ git branch
 git branch abc  
 git checkout abc  
 git push origin abc  
-git push origin :abc 
+git push origin :abc //删除远程分支
 git checkout -b abc 
 git branch -a   //列出所有分支（本地＋远程）
 git checkout -b abc  //创建并且切换分支
