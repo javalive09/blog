@@ -63,9 +63,12 @@ git pull //从远程仓库拉取pull = fetch + merge
 ```
 
 # 切换和还原
+reset本质：将当前分支HEAD指针指向任意提交点
+checkout本质：切换分支
 ``` 
 git checkout develop -f //强制切换分支 （放弃本地修改切换)
 git checkout HEAD /Users/peter/git/xui/XuiPSdk/libs/armeabi/libgetuiext.so  //还原单个文件到HEAD
+git checkout abbdc /Users/peter/git/xui/XuiPSdk/libs/armeabi/libgetuiext.so  //还原单个文件到abbdc
 git checkout <commit> <filepath>  //还原单个文件的某个版本
 git checkout 45b92e3 /Users/peter/git/xui/CarClient/assets/video/video.mp4  
 git reset --hard master  //还原整个项目到master
@@ -145,20 +148,69 @@ git archive -o latest.zip HEAD  //基于最新提交建立归档文件latest.zip
 git archive -o partial.tar HEAD src doc  //只将目录src和doc建立到归档partial.tar中
 git archive --format=tar --prefix=1.0/ v1.0 | gzip > foo-1.0.tar.gz  //基于里程碑v1.0建立归档，并且为归档中文件添加目录前缀1.0
 ```
-# 修改提交信息
-## 修改最近一条消息
+
+# patch
+## 生成path
+```
+git format-patch -<n> <SHA1>
+git format-patch -1 <sha>
+```
+## 应用patch
+```
+git am xxx.patch
+```
+## 错误处理
+```
+git apply --ignore-space-change --ignore-whitespace mychanges.patch
+```
+```
+git apply --reject --whitespace=fix mychanges.patch
+```
+
+# 场景
+## 1.合并多次提交为一次提交
+```
+git reset —soft <commitId>//要合并的起始提交点id
+git commit -m "xxx"
+```
+## 2.剔除某次提交
 ### 没有push到服务器
+#### 方法1：cherry-pick
+```
+git checkout <commitId-last>//要剔除提交点的上一个提交点id
+git cherry-pick <commitId-next>//要剔除提交点的下一个提交点id
+... //cherry-pick 其他提交点
+git checkout master
+git reset --hard <commitId-end>//最后一次cherry-pick的提交点
+```
+#### 方法2：rebase --onto(如果有冲突会打乱提交历史记录)
+```
+git rebase --onto <newbase>//要剔除提交点的上一个提交点id <since>//要剔除提交点的id <branch>
+```
+#### 方法3：rebase -i //推荐
+```
+git rebase -i <commitId-last> 
+修改vim中弹出的信息，把要删除的 commitId 的pick 修改成 d 保存后退出
+```
+### push到服务器
+```
+git revert <commitId>
+```
+
+## 3.修改提交信息
+### 修改最近一条消息
+#### 没有push到服务器
 ```
 git commit --amend
 ```
-### push到服务器
+#### push到服务器
 ```
 git commit --amend
 git push -f origin master
 ```
-## 修改以前的消息
+### 修改以前的消息
 ```
-git rebase -i HEAD~5
+git rebase -i <commitId-last> 
 ```
 修改vim中弹出的信息，把pick 修改成 r 保存后退出
 ```

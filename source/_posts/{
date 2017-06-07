@@ -1,0 +1,26 @@
+{
+  "opt": "flow_service",
+  "target_type": "user",
+  "from": "Eva_AI",
+  "time": 1494921648915,
+  "to": "b_442c05353e63",
+  "msg_id": "c602d6303a0d11e7a165f712750a7650",
+  "info": {
+    "service": "waimai"
+    "info":{
+         // 外卖相关数据    
+    }
+  },
+  "content": {
+    "msg": {
+      "data": {
+        "subTitle": "请打开手机okman",
+        "icon": "waimai",
+        "title": "外卖"
+      },
+      "templeteID": "std",
+      "action": "$operation"
+    },
+    "type": "card"
+  }
+}
