@@ -216,3 +216,7 @@ git rebase -i <commitId-last>
 ```
 git push -f origin master
 ```
+
+# 速查表
+![](http://7xoxmg.com1.z0.glb.clouddn.com/git_map.jpg)
+
