@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 import subprocess,os
 
 for root, dirs, files in os.walk('./source/_posts'):
