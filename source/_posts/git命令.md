@@ -56,7 +56,7 @@ git commit --amend // 修改提交信息
 git remote -v
 git remote add origin https://github.com/javalive09/CodeBag.git //添加远程仓库
 git remote set-url origin https://github.com/javalive09/CodeBag.git //修改远程仓库url
-git push origin --delete <branchName>  //删除远程仓库
+git push origin --delete <branchName>  //删除远程分支
 git push origin master //推送到远程仓库
 git clone https://github.com/javalive09/CodeBag.git // 从远程仓库clone
 git pull //从远程仓库拉取pull = fetch + merge
@@ -93,9 +93,16 @@ git tag
 git tag -l  
 git show 1.0  
 git tag -a v1.0 -m "新加tag"  
-git tag -d v1.0  
+git tag -d v1.0  //删除本地标签
 git push origin --tags  
 git push origin :refs/tags/<tag name>  //删除远程tag
+```
+## 重命名tag
+```
+git tag new old
+git tag -d old
+git push origin :refs/tags/old
+git push --tags
 ```
 
 # 分支
@@ -124,6 +131,13 @@ git stash apply stash@{2}
 git rm --cache path   //忽略已经提交的文件
 git rm path  //删除版本库中的文件
 git mv welcome.txt README  //修改版本库中的文件名
+```
+## 出现 modified: .idea/misc.xml 如何解决
+修改ignore后输出如下命令：
+```
+git rm -rf .idea
+git commit -m "delete .idea"
+git push
 ```
 
 # 恢复
