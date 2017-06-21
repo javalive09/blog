@@ -268,8 +268,9 @@ protoc $SRC_DIR --java_out=$DST_DIR
 // 1. $SRC_DIR：指定需要编译的.proto文件目录 (如没有提供则使用当前目录)
 // 2. --java_out：java根据需要生成代码的类型进行设置
 // 3. $DST_DIR ：编译后代码生成的目录 (通常设置与$SRC_DIR相同)
-
 ``` 
+
+
 
 # android平台下的使用
 ## 添加依赖库
