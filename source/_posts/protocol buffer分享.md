@@ -293,7 +293,7 @@ compile 'com.google.protobuf:protobuf-java:3.3.0'
 -----------
 
 
-# 一个简单的Demo
+# Demo
 [protocol buffers demo](https://github.com/javalive09/CodeBag/tree/dev/sample/src/main/java/com/javalive09/sample/protoc)
 
 
