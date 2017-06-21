@@ -21,6 +21,9 @@ tags:
 * [protocol buffers 编码原理](https://developers.google.com/protocol-buffers/docs/encoding)
 
 
+-----------
+
+
 # 环境配置
 ## 下载
 [github源码](https://github.com/google/protobuf)
@@ -37,6 +40,9 @@ export PATH=$PATH:/Users/peter/Downloads/protoc-3.3.0-osx-x86_64/bin
 protoc --version
 libprotoc 3.3.0
 ```
+
+-----------
+
 
 # 消息模型（.proto文件）
 ```
@@ -268,8 +274,9 @@ protoc $SRC_DIR --java_out=$DST_DIR
 // 1. $SRC_DIR：指定需要编译的.proto文件目录 (如没有提供则使用当前目录)
 // 2. --java_out：java根据需要生成代码的类型进行设置
 // 3. $DST_DIR ：编译后代码生成的目录 (通常设置与$SRC_DIR相同)
-``` 
+```
 
+-----------
 
 
 # android平台下的使用
