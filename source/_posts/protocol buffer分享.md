@@ -290,3 +290,10 @@ compile 'com.google.protobuf:protobuf-java:3.3.0'
 * [protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
 * [wire-gradle-plugin](https://github.com/square/wire-gradle-plugin)
 
+-----------
+
+
+# 一个简单的Demo
+[protocol buffers demo](https://github.com/javalive09/CodeBag/tree/dev/sample/src/main/java/com/javalive09/sample/protoc)
+
+
