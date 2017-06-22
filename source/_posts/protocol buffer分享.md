@@ -5,25 +5,6 @@ tags:
 ---
 
 
-# 搜集到的一些资源
-* [protocol buffers官网](https://developers.google.com/protocol-buffers/)
-
-* [protocol buffers源码](https://github.com/google/protobuf)
-
-* [Protobuf性能对比](https://github.com/eishay/jvm-serializers/wiki)
-
-* [Protobuf vs Json](http://www.52im.net/thread-772-1-1.html)
-
-* [netty 官方protocol buffers demo](https://github.com/netty/netty/blob/eb7f751ba519cbcab47d640cd18757f09d077b55/example/src/main/java/io/netty/example/worldclock/WorldClockServerInitializer.java)
-
-* [retrofit对protocol buffers 官方支持文档](https://github.com/square/retrofit/tree/master/retrofit-converters/protobuf)
-
-* [protocol buffers 编码原理](https://developers.google.com/protocol-buffers/docs/encoding)
-
-
------------
-
-
 # 环境配置
 ## 下载
 [github源码](https://github.com/google/protobuf)
@@ -33,8 +14,11 @@ tags:
 
 ## 配置
 ```
+在 .bash_profile 添加
+
 export PATH=$PATH:/Users/peter/Downloads/protoc-3.3.0-osx-x86_64/bin
 ```
+
 ## 验证
 ```
 protoc --version
@@ -43,6 +27,24 @@ libprotoc 3.3.0
 
 -----------
 
+# 命名规范
+## 消息名和字段名
+消息名使用驼峰法， 字段名使用下划线分隔
+```
+message SongServerRequest {
+  required string song_name = 1;
+}
+```
+## 枚举
+枚举类型名使用驼峰法,值的名字使用大写加下划线分隔:
+```
+enum Foo {
+  FIRST_VALUE = 1;
+  SECOND_VALUE = 2;
+}
+```
+
+-----------
 
 # 消息模型（.proto文件）
 ```
@@ -274,10 +276,13 @@ protoc $SRC_DIR --java_out=$DST_DIR
 // 1. $SRC_DIR：指定需要编译的.proto文件目录 (如没有提供则使用当前目录)
 // 2. --java_out：java根据需要生成代码的类型进行设置
 // 3. $DST_DIR ：编译后代码生成的目录 (通常设置与$SRC_DIR相同)
+
+查看全部命令 
+protoc --help
+
 ```
 
 -----------
-
 
 # android平台下的使用
 ## 添加依赖库
@@ -290,10 +295,31 @@ compile 'com.google.protobuf:protobuf-java:3.3.0'
 * [protobuf-gradle-plugin](https://github.com/google/protobuf-gradle-plugin)
 * [wire-gradle-plugin](https://github.com/square/wire-gradle-plugin)
 
+## 和json之间转换
+### 使用protobuf-java-format [官网](https://code.google.com/archive/p/protobuf-java-format/)
+### 依赖库
+```
+compile 'com.googlecode.protobuf-java-format:protobuf-java-format:1.4'
+```
 -----------
 
+# 原理
+* [官网编码解释](https://developers.google.com/protocol-buffers/docs/encoding)
+* [Protocol Buffer 序列化原理](http://www.jianshu.com/p/30ef9b3780d9)
+* [Let’s Make a Varint](https://carlmastrangelo.com/blog/lets-make-a-varint)
+* [Varint编码](http://www.cnblogs.com/jacksu-tencent/p/3389843.html)
 
 # Demo
 [protocol buffers demo](https://github.com/javalive09/CodeBag/tree/dev/sample/src/main/java/com/javalive09/sample/protoc)
+
+# 搜集到的一些资源
+* [protocol buffers官网](https://developers.google.com/protocol-buffers/)
+* [protocol buffers源码](https://github.com/google/protobuf)
+* [Protobuf性能对比](https://github.com/eishay/jvm-serializers/wiki)
+* [Protobuf vs Json](http://www.52im.net/thread-772-1-1.html)
+* [netty 官方protocol buffers demo](https://github.com/netty/netty/blob/eb7f751ba519cbcab47d640cd18757f09d077b55/example/src/main/java/io/netty/example/worldclock/WorldClockServerInitializer.java)
+* [retrofit对protocol buffers 官方支持文档](https://github.com/square/retrofit/tree/master/retrofit-converters/protobuf)
+* [protocol buffers 编码原理](https://developers.google.com/protocol-buffers/docs/encoding)
+
 
 
