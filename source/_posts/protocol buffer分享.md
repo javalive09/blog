@@ -320,4 +320,50 @@ compile 'com.googlecode.protobuf-java-format:protobuf-java-format:1.4'
 * [protocol buffers 编码原理](https://developers.google.com/protocol-buffers/docs/encoding)
 
 
+# Proto3 补充
+
+## reserved  保留字段
+当你更新消息类型,需要彻底删除一个字段时, 或者注释掉它, 未来的用户在实现他们对这个类型的更新时可以重用这个标签数字. 会导致数据冲突。保留字段可以解决这个问题。
+
+
+## Any
+
+Any 类型替代了extensions.
+
+```
+import "google/protobuf/any.proto";
+
+message ErrorStatus {
+  string message = 1;
+  repeated Any details = 2;
+}
+```
+
+## Oneof
+如果你有一个有很多字段的消息, 而同一时间最多只有一个字段会被设值, 你可以通过使用oneof特性来强化这个行为并节约内存.
+```
+message SampleMessage {
+  oneof test_oneof {
+    string name = 4;
+    SubMessage sub_message = 9;
+  }
+}
+```
+* 设置一个oneof字段会自动清除所有其他oneof成员. 所以如果设置多次oneof字段, 只有最后设置的字段依然有值.
+
+## Maps
+
+如果想常见一个关联的map作为数据定义的一部分, protocol buffers 提供方便的快捷语法:
+```
+map<key_type, value_type> map_field = N;
+```
+key_type可以是任意整型或者字符类型(除了floating和bytes外任何简单类型). 
+value_type可以是任意类型.
+
+
+## Wire使用
+```
+compile 'com.squareup.wire:wire-runtime:2.2.0'   
+```
+
 
