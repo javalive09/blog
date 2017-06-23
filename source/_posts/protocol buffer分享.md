@@ -284,7 +284,8 @@ enum Foo {
 
 -----------
 
-# android平台下的使用
+# Demo
+android平台下的使用
 ## 添加依赖库
 要和protocal buffer编译库匹配
 ```
@@ -304,7 +305,8 @@ compile 'com.googlecode.protobuf-java-format:protobuf-java-format:1.4'
 -----------
 
 
-# 搜集到的一些资源
+# 一些资源
+
 * [官网编码解释](https://developers.google.com/protocol-buffers/docs/encoding)
 * [Protocol Buffer 序列化原理](http://www.jianshu.com/p/30ef9b3780d9)
 * [Let’s Make a Varint](https://carlmastrangelo.com/blog/lets-make-a-varint)
