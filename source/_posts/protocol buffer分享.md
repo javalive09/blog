@@ -360,10 +360,7 @@ map<key_type, value_type> map_field = N;
 key_type可以是任意整型或者字符类型(除了floating和bytes外任何简单类型). 
 value_type可以是任意类型.
 
+## [demo](https://github.com/javalive09/CodeBag/blob/dev/sample/src/main/java/com/javalive09/sample/protoc/VideoDemo3.java)
 
-## Wire使用
-```
-compile 'com.squareup.wire:wire-runtime:2.2.0'   
-```
 
 
