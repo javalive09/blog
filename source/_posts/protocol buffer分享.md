@@ -27,25 +27,6 @@ libprotoc 3.3.0
 
 -----------
 
-# 命名规范
-## 消息名和字段名
-消息名使用驼峰法， 字段名使用下划线分隔
-```
-message SongServerRequest {
-  required string song_name = 1;
-}
-```
-## 枚举
-枚举类型名使用驼峰法,值的名字使用大写加下划线分隔:
-```
-enum Foo {
-  FIRST_VALUE = 1;
-  SECOND_VALUE = 2;
-}
-```
-
------------
-
 # 消息模型（.proto文件）
 ```
 //1.包名
@@ -284,6 +265,25 @@ protoc --help
 
 -----------
 
+# 命名规范
+## 消息名和字段名
+消息名使用驼峰法， 字段名使用下划线分隔
+```
+message SongServerRequest {
+  required string song_name = 1;
+}
+```
+## 枚举
+枚举类型名使用驼峰法,值的名字使用大写加下划线分隔:
+```
+enum Foo {
+  FIRST_VALUE = 1;
+  SECOND_VALUE = 2;
+}
+```
+
+-----------
+
 # android平台下的使用
 ## 添加依赖库
 要和protocal buffer编译库匹配
@@ -303,16 +303,12 @@ compile 'com.googlecode.protobuf-java-format:protobuf-java-format:1.4'
 ```
 -----------
 
-# 原理
+
+# 搜集到的一些资源
 * [官网编码解释](https://developers.google.com/protocol-buffers/docs/encoding)
 * [Protocol Buffer 序列化原理](http://www.jianshu.com/p/30ef9b3780d9)
 * [Let’s Make a Varint](https://carlmastrangelo.com/blog/lets-make-a-varint)
 * [Varint编码](http://www.cnblogs.com/jacksu-tencent/p/3389843.html)
-
-# Demo
-[protocol buffers demo](https://github.com/javalive09/CodeBag/tree/dev/sample/src/main/java/com/javalive09/sample/protoc)
-
-# 搜集到的一些资源
 * [protocol buffers官网](https://developers.google.com/protocol-buffers/)
 * [protocol buffers源码](https://github.com/google/protobuf)
 * [Protobuf性能对比](https://github.com/eishay/jvm-serializers/wiki)
