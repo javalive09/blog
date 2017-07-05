@@ -231,6 +231,60 @@ git rebase -i <commitId-last>
 git push -f origin master
 ```
 
+# submodule
+## add  
+```
+git submodule add git@git.raventech.cn:H1S/common-proto.git /support/src/main/common-proto
+
+git status//检测添加成功
+
+    On branch master
+    Changes to be committed:    
+        new file:   .gitmodules
+        new file:   common-proto
+    表示添加成功
+```
+
+## modify
+在submodule目录下可以进行所有的git子项目操作
+```
+git status
+git add
+git commit -m "abc"
+git push
+```
+## update
+```
+git submodule foreach git pull//项目根目录下
+或
+git pull//子项目目录下
+```
+
+## clone
+```
+git clone git@git.raventech.cn:H1S/common-proto.git --recursive
+或
+git submodule init
+git submodule update
+```
+
+## delete
+```
+1.
+git rm --cached common-proto
+rm -rf common-proto
+rm .gitmodules
+
+2.
+vim .git/config //update config
+
+3.
+git commit -a -m 'remove common-proto submodule'
+git push
+
+```
+
+
 # 速查表
 ![](http://7xoxmg.com1.z0.glb.clouddn.com/git_map.jpg)
 
