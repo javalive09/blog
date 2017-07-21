@@ -285,6 +285,5 @@ git push
 ```
 
 
-# 速查表
-![](http://7xoxmg.com1.z0.glb.clouddn.com/git_map.jpg)
+# [速查表](https://git-scm.com/docs)
 
