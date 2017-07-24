@@ -459,8 +459,8 @@ public class MainActivity extends AppCompatActivity {
 
 #### 3. 通过broadcast广播 intent。
 
-#### 4. 通过messager通信(最方便)[demo](https://github.com/javalive09/IPC-demo)
-##### service 构建messager
+#### 4. 通过messenger通信(最方便)[demo](https://github.com/javalive09/IPC-demo)
+##### service 构建messenger
 ```
 public class MyService extends Service {
 
@@ -571,6 +571,9 @@ public class MainActivity extends AppCompatActivity {
 
  }
 ```
+#### 5. Messenger 和 AIDL的对比
+a. Messenger适合于请求回复的场景。
+b. AIDL除了请求回复，还具有推送功能，AIDL service端使用RemoteCallbackList管理client，能更好的管理client。
 
 ------
 
