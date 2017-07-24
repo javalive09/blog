@@ -284,6 +284,36 @@ git push
 
 ```
 
+# subtree
+假设，你要在各个项目里的/support/src/main/common-proto这个目录对 git@git.raventech.cn:H1S/common-proto.git这个项目做Subtree
+
+1. add remote
+```
+git remote add proto git@git.raventech.cn:H1S/common-proto.git  
+
+```
+
+2. add subtree
+```
+cd 项目的路径  
+git subtree add --prefix=用来放proto项目的相对路径 proto项目git地址 xxx分支  
+
+git subtree add --prefix=/support/src/main/common-proto proto master
+```
+
+3. update
+```
+git subtree pull --prefix=/support/src/main/common-proto proto master  
+
+```
+4. push subtree commit
+```
+git subtree push --prefix=/support/src/main/common-proto proto hotfix/proto
+
+在common-proto项目中合并hotfix/proto即可
+
+```
+
 
 # [速查表](https://git-scm.com/docs)
 
