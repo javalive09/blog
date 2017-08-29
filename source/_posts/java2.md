@@ -45,6 +45,46 @@ LongAdder
 DoubleAdder
 Android N之后支持java 8
 
+## 守护进程
+Java将线程分为User线程和Daemon线程两种
+1) 所谓守护线程就是运行在程序后台的线程，程序的主线程Main（比方java程序一开始启动时创建的那个线程）不会是守护线程。
+
+2) Daemon thread在Java里面的定义是，如果虚拟机中只有Daemon thread 在运行，则虚拟机退出。通常Daemon线程用来为User线程提供某些服务。程序的main()方法线程是一个User进程，User进程创建的进程为User进程。当所有的User线程结束后，JVM才会结束。 
+
+3) 通过在一个线程对象上调用setDaemon(true)，可以将user线程创建的线程明确地设置成Daemon线程。例如，时钟处理线程、idle线程、垃圾回收线程、屏幕更新线程等，都是Daemon线程。通常新创建的线程会从创建它的进程哪里继承daemon状态，除非明确地在线程对象上调用setDaemon方法来改变daemon状态。需要注意的是，setDaemon()方法必须在调用线程的start()方法之前调用。一旦一个线程开始执行（如，调用了start()方法），它的daemon状态不能再修改。通过方法isDaemon()可以知道一个线程是否Daemon线程。
+
+4) 必须等所有的Non-daemon线程都运行结束了，只剩下daemon的时候，JVM才会停下来，注意Main主程序是Non-daemon线程，默认产生的线程全部是Non-daemon线程。
+
+5) daemon的作用
+当设置线程t为Daemon线程时，只要User线程（main线程）一结束，程序立即退出，Daemon线程没有时间从10数到1。但是，如果将线程t设成非daemon，即User线程，则该线程可以完成自己的工作（从10数到1）。如下：
+```
+import static java.util.concurrent.TimeUnit.*;     
+public class DaemonTest {     
+    public static void main(String[] args) throws InterruptedException {     
+        Runnable r = new Runnable() {     
+            public void run() {     
+                for (int time = 10; time > 0; --time) {     
+                    System.out.println("Time #" + time);     
+                    try {     
+                        SECONDS.sleep(2);     
+                    } catch (InterruptedException e) {     
+                        e.printStackTrace();     
+                    }     
+                }     
+            }     
+        };     
+             
+        Thread t = new Thread(r);     
+        t.setDaemon(true);  // try to set this to "false" and see what happens     
+        t.start();     
+             
+        System.out.println("Main thread waiting...");     
+        SECONDS.sleep(6);     
+        System.out.println("Main thread exited.");     
+    }     
+}    
+```
+
 ------
 
 # IO流
