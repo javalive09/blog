@@ -7,16 +7,11 @@ tags:
 <!-- more -->
 
 # 水浒卡
-![shuihu.gif](http://7xoxmg.com1.z0.glb.clouddn.com/shuihu_icon.jpg)  
+![shuihu.gif](http://7xoxmg.com1.z0.glb.clouddn.com/shuihu_icon_360x640.jpg)  
 </br> 
 
 ## 简介：
 曾经的“小浣熊”干脆面在我们的童年有着不可磨灭的印象，我们当时一袋又一袋的买并不是它有多美味，实际上只是为了搜集里面的水浒卡。追忆童年，分享快乐。已集齐七108将。
-
-## 功能：
-* 卡片正反方面动画翻转
-* 点将（108将自由切换）
-
 
 ## 源码地址：
 [https://github.com/javalive09/shuihu](https://github.com/javalive09/shuihu)  
