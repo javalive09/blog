@@ -78,7 +78,7 @@ android studio
 ------ 
 
 # AppManager
-![应用管理](http://7xoxmg.com1.z0.glb.clouddn.com/appmanager_icon_middle.jpg)
+![应用管理](http://7xoxmg.com1.z0.glb.clouddn.com/appmanager_icon_middle_360x640.jpg)
 </br>
 
 ## 简介：
