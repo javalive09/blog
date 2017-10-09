@@ -38,3 +38,21 @@ pip install pyspider --user
 pip uninstall pyspider
 sudo pip install pyspider
 ```
+
+# gitk
+[官网](https://github.com/git/git/tree/master/gitk-git)
+install
+```
+brew update
+brew install git
+```
+## 当前分支的节点图
+```
+gitk
+```
+## 所有分支的节点图
+```
+gitk --all
+```
+
+
