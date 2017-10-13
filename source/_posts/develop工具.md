@@ -23,6 +23,23 @@ brew install wget
 ```
 brew install wireshark
 ```
+## 开启
+```
+sudo wireshark
+```
+## 信息过滤
+```
+//or
+udp.port == 53 || tcp.port == 53
+
+//and
+ip.addr == 192.168.68.17 and udp.port == 1988
+
+//not
+!(udp.port == 53)
+```
+
+
 # pip
 [官网](https://github.com/pypa/pip)
 ## install
@@ -54,6 +71,21 @@ gitk
 ## 所有分支的节点图
 ```
 gitk --all
+```
+
+# socat
+[官网](http://www.dest-unreach.org/socat/)
+
+install
+```
+brew update
+brew install socat
+```
+
+## 发送UDP广播
+```
+//发送hello 广播给 1988端口
+echo -n "hello" | socat - udp-datagram:255.255.255.255:1988,broadcast
 ```
 
 
