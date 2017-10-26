@@ -200,6 +200,43 @@ OuterClass.InnerClass inner = new OuterClass().newInnerClass();
 让Java可以实现多继承
 
 
+------
 
 
+# 泛型
+类型的参数化
 
+## 泛型方法
+用返回泛型标记
+```
+public static <E> void printArray(E[] inputArray) // 返回泛型（一个类型）
+
+public static <T> T printArray(E[] inputArray) //返回泛型 （多个类型）
+
+```
+
+## 泛型类
+用类标记
+```
+public class Box<T> {
+   
+  private T t;
+ 
+  public void add(T t) {
+    this.t = t;
+  }
+ 
+  public T get() {
+    return t;
+  }
+
+```
+
+## 类型通配符
+使用?代替具体的类型参数。 List<?> 在逻辑上是List<String>,List<Integer> 等所有List<具体类型实参>的父类。
+```
+List<? extends Number> //类型通配符上限，上边界
+
+List<? super Number> // 类型通配符下限，下边界
+
+```

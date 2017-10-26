@@ -120,11 +120,24 @@ git branch -m release_v1.24 release_v1.0.0 //修改分支名字
 ```
 
 # stash
+stash 只和当前branch 绑定 所以如果你切换分支后不会再有之前分支保存的stash信息
+
+## 保存
+```
+git stash save "peter"
+```
+## 使用
 ```
 git stash 
 git stash list
-git stash apply stash@{2}
+git stash apply stash@{2}//使用
+git stash pop stash@{2}//弹出
 ```
+## 清除
+```
+git stash clear
+```
+
 
 # 删除
 ```
