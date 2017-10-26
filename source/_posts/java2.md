@@ -232,6 +232,7 @@ public class Box<T> {
 
 ```
 
+
 ## 类型通配符
 使用?代替具体的类型参数。 List<?> 在逻辑上是List<String>,List<Integer> 等所有List<具体类型实参>的父类。
 ```
