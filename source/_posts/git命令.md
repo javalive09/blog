@@ -117,6 +117,7 @@ git branch -a   //列出所有分支（本地＋远程）
 git checkout -b abc  //创建并且切换分支
 git branch -d <branch name> //删除本地分支
 git branch -m release_v1.24 release_v1.0.0 //修改分支名字
+git remote prune origin //清除本地不存在的远程分支
 ```
 
 # stash
