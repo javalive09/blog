@@ -112,6 +112,7 @@ git branch abc
 git checkout abc  
 git push origin abc  
 git push origin :abc //删除远程分支
+git push origin --delete abc //删除远程分支
 git checkout -b abc 
 git branch -a   //列出所有分支（本地＋远程）
 git checkout -b abc  //创建并且切换分支
