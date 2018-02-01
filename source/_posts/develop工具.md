@@ -93,9 +93,15 @@ echo -n "hello" | socat - udp-datagram:255.255.255.255:1988,broadcast
 调试C代码
 使用 Valgrind 十分简单，只要执行valgrind theprogram，它就会运行你的程序，随后打印出你的程序运行时出现的所有错误。
 
+
 安装
 ```
 brew install --HEAD valgrind
 
+```
+
+使用
+```
+valgrind ./ex11
 ```
 
