@@ -298,6 +298,12 @@ git commit -a -m 'remove common-proto submodule'
 git push
 
 ```
+## update url 
+```
+edit .gitmodules
+git submodule sync
+```
+
 
 # subtree
 假设，你要在各个项目里的/support/src/main/common-proto这个目录对 git@git.raventech.cn:H1S/common-proto.git这个项目做Subtree
