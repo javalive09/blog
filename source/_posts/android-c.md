@@ -9,17 +9,21 @@ tags:
 ### 1.standard
 每次都是新的activity对象。
 ### 2.singletop
-栈顶单例。
+栈顶单例。== Intent.FLAG_ACTIVITY_SINGLE_TOP
 特征：如果栈顶有此activity实例，当用startActivity调用此activity时，会复用这个activity，并调用onNewIntent() 刷新intent数据。
 应用场景：防止一个activity 显示多个实例。
 ### 3.singleTask：
-栈单例。
+栈单例，复用它时会清除它上面的所有activity。== Intent.FLAG_ACTIVITY_NEW_TASK  
+情况1：没有activity taskaffinity ->
+情况2：有activity taskaffinity   -> 栈中的root activity
 特征：如果栈中有此activity实例，当用startActivity调用此activity时，会复用这个activity，通过clear掉此activity之上的所有activity的方式将此activity置于栈顶，并调用onNewIntent() 刷新intent数据。
 应用场景：会被多个应用使用的app的main activity。
 例子: 浏览器
 操作：打开浏览器，输入某一网址，然后打开设置界面，按home键切出应用。点击微信，点击某一个网页消息进入，点击菜单，选使用浏览器打开。选择刚才的浏览器点击打开，此时会显示新的网页内容，点击back键会退出浏览器。相同的操作，用qq操作，结果一样。
 ### 4.singleInstance：
-系统单例。
+栈单例，栈中只有一个activity。 no flag
+情况1：没有activity taskaffinity -> rectent task 不会显示
+情况2：有activity taskaffinity   -> rectent task 会显示
 特征：如果栈中有此activity实例，当用startActivity调用此activity时，会复用这个activity，并调用onNewIntent() 刷新intent数据。
 应用场景：和任何activity都没有逻辑关系（包括它所在的app）的activity
 例子：闹钟
@@ -37,6 +41,8 @@ application是应用的概念，一个application可以有多个task任务（多
 
 ### taskAffinity
 android:taskAffinity. 与 Activity 有着亲和关系的任务。从概念上讲，具有相同亲和关系的 Activity 归属同一任务（从用户的角度来看，则是归属同一“应用”）。 任务的亲和关系由其根 Activity 的亲和关系确定。
+value默认值是activity-taskAffinity继承application-taskAffinity，application-taskAffinity的value是包名。
+和启动它的task的root activity的taskAnifinity value 相同。
 
 ### android:allowTaskReparenting
 是否允许此activity，回到原来的task栈中，认祖归宗（更贴切是含义，应该是该子任务是否允许被主任务认领）。 默认false，保留在启动task中。如一个应用启动了浏览器web页面activity，如果这个浏览器web页activity的allowTaskReparenting=true，这个应用退到后台（按home键），浏览器启动时会把这个web页面activity移到浏览器的栈中。
