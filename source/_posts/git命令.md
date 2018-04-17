@@ -119,6 +119,7 @@ git checkout -b abc  //创建并且切换分支
 git branch -d <branch name> //删除本地分支
 git branch -m release_v1.24 release_v1.0.0 //修改分支名字
 git remote prune origin //清除本地不存在的远程分支
+git fetch -p //清理本地无效的远程分支 -p = prune
 ```
 
 # stash
@@ -212,11 +213,12 @@ git cherry-pick <commitId-next>//要剔除提交点的下一个提交点id
 git checkout master
 git reset --hard <commitId-end>//最后一次cherry-pick的提交点
 ```
-#### 方法2：rebase --onto(如果有冲突会打乱提交历史记录)
+#### 方法2：rebase --onto
 ```
-git rebase --onto <newbase>//要剔除提交点的上一个提交点id <since>//要剔除提交点的id <branch>
+git rebase --onto master issue1 sissue2 //在issue1分支合并前, 合并issue2分支
+git rebase --onto <newbase>要剔除提交点的上一个提交点id <since>要剔除提交点的id <branch>
 ```
-#### 方法3：rebase -i //推荐
+#### 方法3：rebase -i //推荐 interactive
 ```
 git rebase -i <commitId-last> 
 修改vim中弹出的信息，把要删除的 commitId 的pick 修改成 d 保存后退出

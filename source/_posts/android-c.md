@@ -45,7 +45,7 @@ value默认值是activity-taskAffinity继承application-taskAffinity，applicati
 和启动它的task的root activity的taskAnifinity value 相同。
 
 ### android:allowTaskReparenting
-是否允许此activity，回到原来的task栈中，认祖归宗（更贴切是含义，应该是该子任务是否允许被主任务认领）。 默认false，保留在启动task中。如一个应用启动了浏览器web页面activity，如果这个浏览器web页activity的allowTaskReparenting=true，这个应用退到后台（按home键），浏览器启动时会把这个web页面activity移到浏览器的栈中。
+基于taskAffinity，是否允许此activity，回到原来的task栈中，认祖归宗（更贴切是含义，应该是该子任务是否允许被主任务认领）。 默认false，保留在启动task中。如一个应用启动了浏览器web页面activity，如果这个浏览器web页activity的allowTaskReparenting=true，这个应用退到后台（按home键），浏览器启动时会把这个web页面activity移到浏览器的栈中。
 Activity 的亲和关系由 taskAffinity 属性定义。 任务的亲和关系通过读取其根 Activity 的亲和关系来确定。因此，按照定义，根 Activity 始终位于具有相同亲和关系的任务之中。 由于具有“singleTask”或“singleInstance”启动模式的 Activity 只能位于任务的根，因此更改父项仅限于“standard”和“singleTop”模式。
 > 注：
 如果之前启动过浏览器activity，那在recenttask列表中切换回浏览器activity，不会reparent。
