@@ -73,7 +73,11 @@ git checkout <commit> <filepath>  //还原单个文件的某个版本
 git checkout 45b92e3 /Users/peter/git/xui/CarClient/assets/video/video.mp4  
 git reset --hard master  //还原整个项目到master
 git reset --hard HEAD  //还原到HEAD
-git reset –hard HEAD^  //还原到HEAD上次提交
+
+git reset --soft HEAD~ //还原到HEAD上次提交，缓存区和工作目录都不会被改变
+git reset --mixed HEAD~ //还原到HEAD上次提交，缓冲区也还原，工作目录不变
+git reset –-hard HEAD^  //还原到HEAD上次提交，缓冲区也还原，工作目录也还原
+
 ```
 ## 查看仓库状态
 ```
