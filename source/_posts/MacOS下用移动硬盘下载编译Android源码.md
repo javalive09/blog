@@ -28,7 +28,20 @@ repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.1
 repo sync
 ```
 
-## 遇到的问题
+## 遇到的问题1
+```
+ninja: build stopped: subcommand failed.
+build/core/ninja.mk:148: recipe for target ‘ninja_wrapper’ failed
+make: *** [ninja_wrapper] Error 1
+```
+解决：
+```
+export JACK_SERVER_VM_ARGUMENTS="-Dfile.encoding=UTF-8 -XX:+TieredCompilation -Xmx4096m"
+out/host/linux-x86/bin/jack-admin kill-server
+out/host/linux-x86/bin/jack-admin start-server
+```
+
+## 遇到的问题2
 ```
 warning: gpg (GnuPG) is not available. warning: Installing it is strongly encouraged.
 ```
@@ -36,6 +49,7 @@ warning: gpg (GnuPG) is not available. warning: Installing it is strongly encour
 ```
 brew install gpg
 ```
+
 # 编译
 
 ## 环境
