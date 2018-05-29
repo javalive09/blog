@@ -344,3 +344,99 @@ git subtree push --prefix=/support/src/main/common-proto proto hotfix/proto
 
 # [速查表](https://git-scm.com/docs)
 
+
+# 本地多分支共享多平台代码方式
+## 拉取一个平台的代码到本地
+```
+git clone git@github.com:javalive09/CodeBag.git
+```
+
+## 查看.git/config
+```
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  ignorecase = true
+  precomposeunicode = true
+[remote "origin"]
+  url = https://github.com/javalive09/CodeBag.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "dev"]
+  remote = origin
+  merge = refs/heads/dev
+```
+
+## 修改.git/config 添加其他仓库
+```
+git remote add other https://xxxxx
+
+```
+## 查看新的.git/config
+```
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  ignorecase = true
+  precomposeunicode = true
+[remote "origin"]
+  url = https://github.com/javalive09/CodeBag.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "dev"]
+  remote = origin
+  merge = refs/heads/dev
+[remote "other"]
+        url = https://xxxxx
+        fetch = +refs/heads/*:refs/remotes/other/*
+```
+
+## 手动添加本地分支
+
+```
+[core]
+  repositoryformatversion = 0
+  filemode = true
+  bare = false
+  logallrefupdates = true
+  ignorecase = true
+  precomposeunicode = true
+[remote "origin"]
+  url = https://github.com/javalive09/CodeBag.git
+  fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "dev"]
+  remote = origin
+  merge = refs/heads/dev
+[remote "other"]
+        url = https://xxxxx
+        fetch = +refs/heads/*:refs/remotes/other/*
+
+[branch "other"]
+    remote = other
+    merge = refs/heads/master        
+
+```
+
+## 切换到新建的分支
+```
+git checkout -b other
+```
+
+## 同步新库
+```
+git pull
+
+```
+
+## 切换到某次提交
+```
+git status
+git reset xxx //reset 到 xxx
+```
+
+## 提交到新库
+```
+git push other HEAD:refs/for/master
+```

@@ -5,10 +5,12 @@ tags:
 ---
 
 # 下载
+[android细分版本号列表](https://source.android.com/setup/start/build-numbers)
+
 ## 制作一个大小写敏感的磁盘分区
 磁盘工具 > 选中移动硬盘 > 文件 > 新建映像 > 空白映像 > 设置映像 > 存储 > 启动磁盘分区
 
-## 下载android源码
+## 从官网下载android源码
 [官方文档](https://source.android.com/source/downloading)
 ```
 mkdir ~/bin
@@ -24,11 +26,10 @@ git config --global user.email "you@example.com"
 repo init -u https://android.googlesource.com/platform/manifest
 repo init -u https://android.googlesource.com/platform/manifest -b android-4.0.1_r1
 
-//start download
-repo sync
+repo sync //start download
 ```
 
-## 遇到的问题1
+### 遇到的问题1
 ```
 ninja: build stopped: subcommand failed.
 build/core/ninja.mk:148: recipe for target ‘ninja_wrapper’ failed
@@ -41,13 +42,32 @@ out/host/linux-x86/bin/jack-admin kill-server
 out/host/linux-x86/bin/jack-admin start-server
 ```
 
-## 遇到的问题2
+### 遇到的问题2
 ```
 warning: gpg (GnuPG) is not available. warning: Installing it is strongly encouraged.
 ```
 解决：
 ```
 brew install gpg
+```
+
+## 使用清华源下载源码
+
+### 下载repo
+```
+mkdir ~/bin
+PATH=~/bin:$PATH
+curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
+chmod a+x ~/bin/repo
+```
+
+### 下载
+```
+export HTTP_PROXY=
+export HTTPS_PROXY=
+export REPO_URL='https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/'
+repo init -u https://aosp.tuna.tsinghua.edu.cn/platform/manifest -b android-8.1.0_r10 // -b 后面为选择的一个[android细分版本号列表](https://source.android.com/setup/start/build-numbers) 中的一个分支号
+repo sync // start download
 ```
 
 # 编译
@@ -61,3 +81,15 @@ POSIXLY_CORRECT=1 sudo port install gmake libsdl git gnupg
 POSIXLY_CORRECT=1 sudo port install bison
 
 ```
+
+## 开始编译
+```
+source build/envsetup.sh
+make -j4
+```
+
+# 查看Android源码版本
+```
+build\core\version_defaults.mk //搜索该文件中的 PLATFORM_VERSION值
+```
+
