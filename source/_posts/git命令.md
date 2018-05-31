@@ -426,8 +426,8 @@ git checkout -b other
 
 ## 同步新库
 ```
-git pull
-
+git pull // = git fetch + git merge remote
+git pull --rebase // = git fetch + git rebase remote
 ```
 
 ## 切换到某次提交
