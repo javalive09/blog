@@ -440,3 +440,47 @@ git reset xxx //reset 到 xxx
 ```
 git push other HEAD:refs/for/master
 ```
+
+
+
+# The Refspec
+其中 spec 是 specification 的简写。最早把 refspec 翻译为“引用表达式”，现已经修改为“引用规则”，相应的 pathspec 翻译为“路径规则”。
+[官网](https://git-scm.com/book/zh/v1/Git-%E5%86%85%E9%83%A8%E5%8E%9F%E7%90%86-The-Refspec)
+Refspec 的格式是一个可选的 + 号，接着是 <src>:<dst> 的格式，这里 <src> 是远端上的引用格式， <dst> 是将要记录在本地的引用格式。可选的 + 号告诉 Git 在即使不能快速演进的情况下，也去强制更新它。
+
+## fetch其他库的分支
+如你有一个QA组，他们推送一系列分支，你想每次获取 master 分支和QA组的所有分支，你可以在.git/config中使用这样的配置：
+```
+[remote "origin"]
+       url = git@github.com:schacon/simplegit-progit.git
+       fetch = +refs/heads/master:refs/remotes/origin/master
+       fetch = +refs/heads/qa/*:refs/remotes/origin/qa/*
+```
+
+## push到其他库的分支
+如果QA组成员想把他们的 master 分支推送到远程的 qa/master 分支上，可以这样运行：
+```
+git push origin master:refs/heads/qa/master
+```
+如果他们想让 Git 每次运行 git push origin 时都这样自动推送，在.git/config中自定义push
+```
+[remote "origin"]
+       url = git@github.com:schacon/simplegit-progit.git
+       fetch = +refs/heads/*:refs/remotes/origin/*
+       push = refs/heads/master:refs/heads/qa/master
+```
+
+## 删除分支
+
+因为 refspec 的格式是 <src>:<dst>, 通过把 <src> 部分留空的方式，这个意思是是把远程的 topic 分支变成空，也就是删除它。
+```
+git push origin :topic
+```
+# refs/for/ 和refs/heads/
+[详细解释](https://blog.csdn.net/caomiao2006/article/details/44243309)
+1.     这个不是git的规则，而是gerrit的规则，
+2.     Branches, remote-tracking branches, and tags等等都是对commite的引用（reference）,引用都以 “refs/……”表示. 比如remote branch: origin/git_int(=refs/remotes/origin/git_int)， local tag: v2.0(=refs/tags/v2.0)， local branch: git_int(=refs/heads/git_int)…
+3.     简单点说，就是refs/for/mybranch需要经过code review之后才可以提交；refs/heads/mybranch不需要code review。
+
+
+
