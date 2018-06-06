@@ -351,94 +351,44 @@ git subtree push --prefix=/support/src/main/common-proto proto hotfix/proto
 git clone git@github.com:javalive09/CodeBag.git
 ```
 
-## 查看.git/config
-```
-[core]
-  repositoryformatversion = 0
-  filemode = true
-  bare = false
-  logallrefupdates = true
-  ignorecase = true
-  precomposeunicode = true
-[remote "origin"]
-  url = https://github.com/javalive09/CodeBag.git
-  fetch = +refs/heads/*:refs/remotes/origin/*
-[branch "dev"]
-  remote = origin
-  merge = refs/heads/dev
-```
-
-## 修改.git/config 添加其他仓库
+## add其他仓库
 ```
 git remote add other https://xxxxx
 
 ```
-## 查看新的.git/config
+## fetch remote 仓库
 ```
-[core]
-  repositoryformatversion = 0
-  filemode = true
-  bare = false
-  logallrefupdates = true
-  ignorecase = true
-  precomposeunicode = true
-[remote "origin"]
-  url = https://github.com/javalive09/CodeBag.git
-  fetch = +refs/heads/*:refs/remotes/origin/*
-[branch "dev"]
-  remote = origin
-  merge = refs/heads/dev
-[remote "other"]
-        url = https://xxxxx
-        fetch = +refs/heads/*:refs/remotes/other/*
+git remote -v
+git fetch other
 ```
 
-## 手动添加本地分支
+## 切换到仓库分支
 
 ```
-[core]
-  repositoryformatversion = 0
-  filemode = true
-  bare = false
-  logallrefupdates = true
-  ignorecase = true
-  precomposeunicode = true
-[remote "origin"]
-  url = https://github.com/javalive09/CodeBag.git
-  fetch = +refs/heads/*:refs/remotes/origin/*
-[branch "dev"]
-  remote = origin
-  merge = refs/heads/dev
-[remote "other"]
-        url = https://xxxxx
-        fetch = +refs/heads/*:refs/remotes/other/*
-
-[branch "other"]
-    remote = other
-    merge = refs/heads/master        
+git remote -v
+git checkout remotes/other/master       
+git checkout -b other@master
 
 ```
 
-## 切换到新建的分支
+## push新库分支
 ```
-git checkout -b other
-```
-
-## 同步新库
-```
-git pull // = git fetch + git merge remote
-git pull --rebase // = git fetch + git rebase remote
+git push other refs/heads/other@master:refs/heads/master // src:dest   从本地other@master push 到 远程 master
+git push other HEAD:refs/heads/master   // src:dest   从本地HEAD push 到 远程 master
 ```
 
-## 切换到某次提交
+## pull新库分支
 ```
-git status
-git reset xxx //reset 到 xxx
+git pull other refs/heads/master:refs/heads/other@master //src:dest 从远程master pull 到本地 other@master
 ```
 
-## 提交到新库
+## pull push 更方便的办法
 ```
-git push other HEAD:refs/for/master
+git branch -vv//查看本地分支和远程分支关联关系
+
+git branch -u other/master //设置分支的upstream == git branch --set-upstream-to=other/master other@master
+git branch -vv //检查是否关联上了
+
 ```
 
 
