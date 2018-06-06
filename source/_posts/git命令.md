@@ -382,7 +382,7 @@ git push other HEAD:refs/heads/master   // src:dest   从本地HEAD push 到 远
 git pull other refs/heads/master:refs/heads/other@master //src:dest 从远程master pull 到本地 other@master
 ```
 
-## pull push 更方便的办法
+## pull 更方便的办法（设置upstream）
 ```
 git branch -vv//查看本地分支和远程分支关联关系
 
