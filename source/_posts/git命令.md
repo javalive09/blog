@@ -433,12 +433,12 @@ git push origin :topic
 3.     简单点说，就是refs/for/mybranch需要经过code review之后才可以提交；refs/heads/mybranch不需要code review。
 
 
-# gitk
+# gitk(The git repository browser)
 [文档](https://docs.oracle.com/cd/E56344_01/html/E54075/gitk-1.html#scrolltoc)
-The git repository browser
-gitk [<option>...] [<revs>] [--] [<path>...]
 
 ```
+gitk [<option>...] [<revs>] [--] [<path>...]   //命令格式
+
 gitk     //显示当前分支
 gitk --all //显示当前目录下 全部分支 --all 为 option
 gitk ./  //显示当前目录下 当前分支
