@@ -1,5 +1,5 @@
 ---
-title: ubunut16.04下载编译android源码
+title: ubunut16.04下载/编译/调试android源码
 date: 2018-05-29 16:28:21
 tags:
 ---
@@ -124,4 +124,67 @@ make -j4
 ```
 build\core\version_defaults.mk //搜索该文件中的 PLATFORM_VERSION值
 ```
+
+# 调试
+## 准备
+检查out/host/linux-x86/framework/目录下是否存在idegen.jar文件,存在则说明你已经编译过该模块,否者,则需要编译.执行如下命令即可:
+```
+soruce build/envsetup.sh
+mmm development/tools/idegen/
+sudo ./development/tools/idegen/idegen.sh
+```
+其中mmm development/tools/idegen/执行完成后会生成idegen.jar,而sodo ./development/tools/idegen/idegen.sh则会在源码目录下生成IEDA工程配置文件:android.ipr,android.iml及android.iws.
+### 三个文件的作用
+android.ipr:通常是保存工程相关的设置,比如编译器配置,入口,相关的libraries等 
+android.iml:则是主要是描述了modules,比如modules的路径,依赖关系等. 
+android.iws:则主要是包含了一些个人工作区的设置.
+
+## 导入
+
+### 修改AS配置文件
+修改一下Android studio的配置:32位系统下修改idea.vmoptions,64位下修改idea64.vmotions 
+调整其中的-Xms和-Xmx参数值,官方要求至少在748m以上,根据实际情况进行配置即可.
+
+### 导入源码
+打开Android Studio,点击File->Open,选择刚才生成的android.ipr文件即可,然后就是漫长的等待。很多情况下,我们希望不导入某些模块,那么就可以在导入前修改android.iml文件
+只保留了framworks和packages模块,将其他模块全部排除,如下:
+
+```
+<excludeFolder url="file://$MODULE_DIR$/.repo" />
+<excludeFolder url="file://$MODULE_DIR$/abi" />
+<excludeFolder url="file://$MODULE_DIR$/art" />
+<excludeFolder url="file://$MODULE_DIR$/bionic" />
+<excludeFolder url="file://$MODULE_DIR$/bootable" />
+<excludeFolder url="file://$MODULE_DIR$/build" />
+<excludeFolder url="file://$MODULE_DIR$/cts" />
+<excludeFolder url="file://$MODULE_DIR$/dalvik" />
+<excludeFolder url="file://$MODULE_DIR$/developers" />
+<excludeFolder url="file://$MODULE_DIR$/development" />
+<excludeFolder url="file://$MODULE_DIR$/device" />
+<excludeFolder url="file://$MODULE_DIR$/docs" />
+<excludeFolder url="file://$MODULE_DIR$/external" />
+<excludeFolder url="file://$MODULE_DIR$/hardware" />
+<excludeFolder url="file://$MODULE_DIR$/libcore" />
+<excludeFolder url="file://$MODULE_DIR$/libnativehelper" />
+<excludeFolder url="file://$MODULE_DIR$/ndk" />
+<excludeFolder url="file://$MODULE_DIR$/out" />
+<excludeFolder url="file://$MODULE_DIR$/pdk" />
+<excludeFolder url="file://$MODULE_DIR$/prebuilt" />
+<excludeFolder url="file://$MODULE_DIR$/prebuilts" />
+<excludeFolder url="file://$MODULE_DIR$/sdk" />
+<excludeFolder url="file://$MODULE_DIR$/system" />
+<excludeFolder url="file://$MODULE_DIR$/tools" />
+```
+AS加载完成后，查看目录Poject 列表下 红色的目录代表被 exclude 排除了 
+
+### 配置代码依赖，确保代码跳转正确
+[参考文章](https://blog.csdn.net/aaa111/article/details/43227367)
+File -> Project Structure 打开 Module，然后选中 Dependencies， 保留 JDK 跟 Module Source 项，并添加源码的 external 和 frameworks 依赖
+然后是 SDK 的设置，确保关联对应版本的 SDK 于系统版本一致 
+
+### 遇到Android studio 不停 scanning files to index
+Open module setting --> Modules --> 找到gen文件夹  --> 右键选择Resources
+
+## 开始调试
+usb连接设备后 点击debug图标 --> show all processes --> 要调试的进程 在需要的地方加入断点即可调试
 
