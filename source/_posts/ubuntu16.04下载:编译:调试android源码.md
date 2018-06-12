@@ -186,5 +186,6 @@ File -> Project Structure 打开 Module，然后选中 Dependencies， 保留 JD
 Open module setting --> Modules --> 找到gen文件夹  --> 右键选择Resources
 
 ## 开始调试
+[参考文章](https://blog.csdn.net/qq_32452623/article/details/53983563)
 usb连接设备后 点击debug图标 --> show all processes --> 要调试的进程 在需要的地方加入断点即可调试
 
