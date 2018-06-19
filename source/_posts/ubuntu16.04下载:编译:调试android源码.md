@@ -189,3 +189,11 @@ Open module setting --> Modules --> 找到gen文件夹  --> 右键选择Resource
 [参考文章](https://blog.csdn.net/qq_32452623/article/details/53983563)
 usb连接设备后 点击debug图标 --> show all processes --> 要调试的进程 在需要的地方加入断点即可调试
 
+# 遇到问题
+
+ubuntu 无法识别移动硬盘
+```
+sudo apt-get install exfat-fuse exfat-utils
+```
+
+
