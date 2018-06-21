@@ -191,9 +191,21 @@ usb连接设备后 点击debug图标 --> show all processes --> 要调试的进�
 
 # 遇到问题
 
-ubuntu 无法识别移动硬盘
+## ubuntu 无法识别移动硬盘
 ```
 sudo apt-get install exfat-fuse exfat-utils
 ```
+## Ubuntu 16.04安装sogou 拼音输入法
 
+[下载](http://pinyin.sogou.com/linux/?r=pinyin) [参考](https://blog.csdn.net/ljheee/article/details/52966456)
+```
+sudo apt-get install -f
+sudo dpkg -i sogoupinyin_2.0.0.0072_amd64.deb
+```
+## Ubuntu 配置adb环境
+```
+vi ~/.bashrc
+export PATH=/home/homer/android-sdk-linux/platform-tools/:$PATH //重启后生效
+source ~/.bashrc //立即生效
+```
 
