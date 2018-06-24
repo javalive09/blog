@@ -1,5 +1,5 @@
 ---
-title: 命令行
+title: 命令行Command Line
 date: 2017-02-10 16:42:45
 tags:
 ---
@@ -180,6 +180,17 @@ vi /etc/hosts
 
 //mac
 vi /private/etc/hosts
+```
+
+## 获取app启动时间
+
+```
+adb shell am start -W -n packagename/packageName.MainActivity
+
+ThisTime: 355   // 调用有界面 Activity 的 onCreate、onResume。表示一连串启动 Activity 的最后一个 Activity 的启动耗时；表示新应用启动的耗时，包括新进程的启动和 Activity 的启动，但不包括前一个应用 Activity pause 的耗时。
+TotalTime: 355  // 启动进程、调用无界面 Activity 的 onCreate() 等、 pause/finish 无界面的 Activity。 
+WaitTime: 365  //AMS 创建 ActivityRecord 记录块和选择合理的 Task、将当前Resume 的 Activity 进行 pause。 就是总的耗时，包括前一个应用 Activity pause 的时间和新应用启动的时间；开发者一般只要关心 TotalTime 即可，这个时间才是自己应用真正启动的耗时。 
+
 ```
 
 

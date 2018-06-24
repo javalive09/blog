@@ -209,3 +209,14 @@ export PATH=/home/homer/android-sdk-linux/platform-tools/:$PATH //重启后生�
 source ~/.bashrc //立即生效
 ```
 
+## 生成android.jar
+1.首先编译Android的系统，其实直接编译framework也行，在编译完成后在out\target\common\obj\JAVA_LIBRARIES\framework_intermediates下面有个classes.jar的文件，我们就需要这个jar文件。
+
+2.将classes.jar放在某个文件夹下面，然后将其解压，我们可以得到一个android文件夹和META_INF文件夹，
+
+3.找到我们常使用的sdk版本目录下面的android.jar,比如:sdk\platforms\android-19\android.jar,将其放在某个文件夹下面解压。解压后会得到很多个文件夹，包括:android,java,com,javax,org,META_INF等文件夹以及resources.arsc文件。
+
+4.将上面classes.jar解压出来的android文件夹下面的所有文件，复制到android.jar解压出来的android文件夹里面，并覆盖相同文件名的文件及文件夹。其实你注意上面的两个android文件夹内容大致一样。
+
+5.面到了最关键的一步，就是把现有的文件夹中的classes打包成java文件，首先在解压android.jar的根目录下面打开cmd命令窗口，输入命令jar cvfm android.jar META-INF/MANIFEST.MF ./ 。如果找不到jar，请先配置环境变量。接着就看到这个打包的详细信息在控制台输出。关于jar的详细命令参数请看这里 [jar命令详解](https://blog.csdn.net/xyw_blog/article/details/8827937)顺利的话，就可以得到一个android.jar 文件了。
+

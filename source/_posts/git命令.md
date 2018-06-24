@@ -43,6 +43,11 @@ Host bitbucket.org
  IdentityFile ~/.ssh/id_rsa 
 ```
 
+## 设置vim为编辑器
+```
+git config --global core.editor "vim"
+```
+
 # 创建和提交
 ```
 git init 

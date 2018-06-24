@@ -907,6 +907,16 @@ public class AlarmClock extends Entry {
 }
 ```
 
-
-
-
+# android 打包去掉log
+代码混淆配置，发布release版本时关闭log输出
+```
+-assumenosideeffects class android.util.Log {
+    public static *** v(...);
+    public static *** d(...);
+    public static *** i(...);
+    public static *** w(...);
+    public static *** e(...);
+}
+```
+使用这个配置时，一定要注意 -dontoptimize，配置。
+don‘t optimize 不要优化；将会会关闭优化，导致日志语句不会被优化掉。所以不能有这个配置
