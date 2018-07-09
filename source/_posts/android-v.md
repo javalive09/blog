@@ -411,6 +411,7 @@ OnTouchListener 处理逻辑在OnClickListener之前,  所以OnTouchListener 的
 整个view体系保持通路的情况下，每次都调用。 只要有一层view dispatchTouchEvent返回false，短路。则之后整个view体系不会再调用此方法。
 
 ### onInterceptTouchEvent()调用时机
+子view requestDisallowInterceptTouchEvent(false)时:
 整个view体系保持通路的情况下，action_down时，mFirstTouchTarget != null 时。返回true拦截了mFirstTouchTarget 会置空，则之后再也不会调用此方法。
 
 ### onTouchEvent()调用时机
