@@ -920,3 +920,153 @@ public class AlarmClock extends Entry {
 ```
 使用这个配置时，一定要注意 -dontoptimize，配置。
 don‘t optimize 不要优化；将会会关闭优化，导致日志语句不会被优化掉。所以不能有这个配置
+
+# Log打印控制
+推荐方法三，无须重新编译，且更加灵活，user版本也可控制打印
+
+## 方法一：代码层标记控制
+每次在发布之前都要手动去改这个DEBUG变量
+```
+public class Log {
+    private static final boolean DEBUG = true;
+
+    public static void i(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.i(tag, msg);
+    }
+
+    public static void e(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.e(tag, msg);
+    }
+
+    public static void d(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.d(tag, msg);
+    }
+
+    public static void v(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.v(tag, msg);
+    }
+
+    public static void w(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.w(tag, msg);
+    }
+}
+```
+
+## 方法二：BuildConfig.DEBUG控制
+DEBUG会根据Build类型自动设定 
+assembleRelease对应的DEBUG=true 
+assembleDebug对应的DEBUG=false
+从而实现不同包会自动过滤log信息
+```
+public class Log {
+    private static final boolean DEBUG = BuildConifg.DEBUG;
+
+    public static void i(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.i(tag, msg);
+    }
+
+    public static void e(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.e(tag, msg);
+    }
+
+    public static void d(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.d(tag, msg);
+    }
+
+    public static void v(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.v(tag, msg);
+    }
+
+    public static void w(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.w(tag, msg);
+    }
+}
+```
+
+## 方法三：Log.isLoggable(String tag, int level)控制
+1. isLoggable默认level为android.util.Log.INFO，level >= INFO时isLoggable返回true
+2. 动态设置（重启后失效）：可以通过setprop log.tag.<YOUR_LOG_TAG> <LEVEL>来改变log的默认level  适用系统版本（user/userdebug/eng）
+3. 静态设置（重启后有效）：按照log.tag.<YOUR_LOG_TAG>=D的形式，写入/data/local.prop中 适用系统版本（userdebug/eng）
+4. tag的长度如果超过23个字符则会抛出IllegalArgumentException异常
+level如下：
+
+```
+    /**
+     * Priority constant for the println method; use Log.v.
+     */
+    public static final int VERBOSE = 2;
+
+    /**
+     * Priority constant for the println method; use Log.d.
+     */
+    public static final int DEBUG = 3;
+
+    /**
+     * Priority constant for the println method; use Log.i.
+     */
+    public static final int INFO = 4;
+
+    /**
+     * Priority constant for the println method; use Log.w.
+     */
+    public static final int WARN = 5;
+
+    /**
+     * Priority constant for the println method; use Log.e.
+     */
+    public static final int ERROR = 6;
+
+    /**
+     * Priority constant for the println method.
+     */
+    public static final int ASSERT = 7;
+
+```
+修改如下：
+可用adb shell setprop log.tag.Setting D 动态开启debug模式，重启后失效
+
+```
+public class Log {
+    public static final String TAG = "Setting";
+    private static final boolean DEBUG = android.util.Log.isLoggable(TAG, android.util.Log.DEBUG);
+
+    public static void i(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.i(tag, msg);
+    }
+
+    public static void e(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.e(tag, msg);
+    }
+
+    public static void d(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.d(tag, msg);
+    }
+
+    public static void v(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.v(tag, msg);
+    }
+
+    public static void w(String tag, String msg) {
+        if (DEBUG)
+            android.util.Log.w(tag, msg);
+    }
+}
+```
+
+
+
+
