@@ -1147,6 +1147,26 @@ pw.showAtLocation(this, Gravity.NO_GRAVITY, 0, statusBarHeight);
 
 ------
 
+# 修改app 默认动画
+
+在activity中添加overridePendingTransition即可满足 应用启动activity和应用中activity间切换时的动画一致。
+
+```
+        protected void onCreate(Bundle savedInstanceState) {
+            setContentView(R.layout.main_dashboard);
+            overridePendingTransition(R.anim.activity_open_enter, R.anim.activity_open_exit);//添加启动动画
+        }
+
+        public void finish() {
+            super.finish();
+            overridePendingTransition(R.anim.activity_close_enter, R.anim.activity_close_exit);//添加退出动画
+        }
+
+```
+
+
+------
+
 # 设备的适配
 [官方文档](https://developer.android.google.cn/guide/practices/screens_support.html?hl=zh-cn)
 ![](http://7xoxmg.com1.z0.glb.clouddn.com/fitres.jpg)

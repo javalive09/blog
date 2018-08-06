@@ -996,6 +996,11 @@ public class Log {
 ## 方法三：Log.isLoggable(String tag, int level)控制
 1. isLoggable默认level为android.util.Log.INFO，level >= INFO时isLoggable返回true
 2. 动态设置（重启后失效）：可以通过setprop log.tag.<YOUR_LOG_TAG> <LEVEL>来改变log的默认level  适用系统版本（user/userdebug/eng）
+
+```
+adb shell setprop log.tag.OTA VERBOSE
+```
+
 3. 静态设置（重启后有效）：按照log.tag.<YOUR_LOG_TAG>=D的形式，写入/data/local.prop中 适用系统版本（userdebug/eng）注：有些系统可能不会生效
 4. tag的长度如果超过23个字符则会抛出IllegalArgumentException异常
 level如下：

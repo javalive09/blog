@@ -105,3 +105,17 @@ brew install --HEAD valgrind
 valgrind ./ex11
 ```
 
+# apktool
+[官网](https://github.com/pxb1988/dex2jar)
+将dex文件转换成Jar包或将apk文件转成jar文件
+```
+// 将 dex 文件转成 jar 文件
+d2j-dex2jar <dex_name> -o <jar_name>
+//将apk文件转成jar文件
+sh d2j-dex2jar.sh -f <apk_name>
+```
+
+# JD-GUI
+[官网](http://jd.benow.ca/)
+将Jar包文件反编译成java源文件
+[参考文章](https://www.jianshu.com/p/2bbe7112f940)
