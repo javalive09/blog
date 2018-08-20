@@ -99,3 +99,10 @@ android studio
 
 ## 应用下载：
 [点击下载](http://7xoxmg.com1.z0.glb.clouddn.com/appmanager.apk)
+
+
+
+# LetterLauncher
+![应用管理](http://7xoxmg.com1.z0.glb.clouddn.com/appmanager_icon_middle_360x640.jpg)
+</br>
+
