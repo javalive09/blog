@@ -1082,6 +1082,24 @@ public class Log {
 1.程序异常退出（fatal）
 2.程序强制关闭（fatal）
 3.程序无响应（Application No Response--ANR）
+分享anr文件/data/anr/traces.txt
+关键字：ANR空格
+```
+08-14 00:59:14.698 I/art     ( 4238): Wrote stack traces to '/data/anr/traces.txt'
+08-14 00:59:14.702 E/ActivityManager(  562): ANR in com.baidu.launcher
+08-14 00:59:14.702 E/ActivityManager(  562): PID: 1822
+08-14 00:59:14.702 E/ActivityManager(  562): Reason: Broadcast of Intent { act=android.intent.action.TIME_TICK flg=0x50000014 (has extras) }
+08-14 00:59:14.702 E/ActivityManager(  562): Load: 1.81 / 2.97 / 3.57
+08-14 00:59:14.702 E/ActivityManager(  562): CPU usage from 746729ms to 0ms ago (2018-08-14 00:46:43.317 to 2018-08-14 00:59:10.047):
+08-14 00:59:14.702 E/ActivityManager(  562):   58% 562/system_server: 35% user + 23% kernel / faults: 34475 minor 25 major
+08-14 00:59:14.702 E/ActivityManager(  562):   57% 1822/com.baidu.launcher: 48% user + 9.1% kernel / faults: 547808 minor 117 major
+08-14 00:59:14.702 E/ActivityManager(  562):   26% 231/surfaceflinger: 13% user + 12% kernel / faults: 13215 minor
+08-14 00:59:14.702 E/ActivityManager(  562):   15% 248/mediaserver: 5.1% user + 10% kernel
+08-14 00:59:14.702 E/ActivityManager(  562):   12% 240/audioserver: 7.7% user + 4.5% kernel / faults: 43 minor
+08-14 00:59:14.702 E/ActivityManager(  562):   9.2% 2485/perfd: 3.8% user + 5.4% kernel / faults: 11314 minor
+08-14 00:59:14.702 E/ActivityManager(  562):   9.2% 2407/adbd: 2.1% user + 7.1% kernel / faults: 36681 minor
+```
+
 4.native层：Tombstone crash
 5.Kernel层：kernel panic
 
