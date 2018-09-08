@@ -1171,3 +1171,65 @@ pw.showAtLocation(this, Gravity.NO_GRAVITY, 0, statusBarHeight);
 [官方文档](https://developer.android.google.cn/guide/practices/screens_support.html?hl=zh-cn)
 ![](http://7xoxmg.com1.z0.glb.clouddn.com/fitres.jpg)
 
+
+## 一套代码适配不同屏幕设备。
+原理：通过修改density保证任意分辨率设备按密度比率进行像素缩放，纵向可滚动。
+接口：提供的接口保证可以缩放activity内的显示效果，并且能还原缩放。
+
+```
+public class DensityUtil {
+
+    private static float mNonCompatDensity;
+    private static int mNonCompatDensityDpi;
+    private static float mNonCompatScaledDensity;
+
+    public static void fitDensity(@NonNull Activity activity, @NonNull final Application application, int designWith) {
+        final DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
+
+        if (mNonCompatDensity == 0) {
+            mNonCompatDensity = appDisplayMetrics.density;
+            mNonCompatDensityDpi = appDisplayMetrics.densityDpi;
+            mNonCompatScaledDensity = appDisplayMetrics.scaledDensity;
+            application.registerComponentCallbacks(new ComponentCallbacks() {
+                @Override
+                public void onConfigurationChanged(Configuration newConfig) {
+                    if (newConfig != null && newConfig.fontScale > 0) {
+                        mNonCompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
+                    }
+                }
+
+                @Override
+                public void onLowMemory() {
+
+                }
+            });
+        }
+
+        final float targetDensity = appDisplayMetrics.widthPixels * 1.0f / designWith;
+        final int targetDensityDpi = (int) (160 * targetDensity);
+        final float targetScaledDensity = targetDensity * (mNonCompatScaledDensity / mNonCompatDensity);
+
+        appDisplayMetrics.density = targetDensity;
+        appDisplayMetrics.densityDpi = targetDensityDpi;
+        appDisplayMetrics.scaledDensity = targetScaledDensity;
+
+        final DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
+        activityDisplayMetrics.density = targetDensity;
+        activityDisplayMetrics.densityDpi = targetDensityDpi;
+        activityDisplayMetrics.scaledDensity = targetScaledDensity;
+        Log.i("peter", " appDisplayMetrics.density :" + appDisplayMetrics.density + ";appDisplayMetrics"
+                + ".scaledDensity:" + appDisplayMetrics.scaledDensity);
+    }
+
+    public static void resetFit(@NonNull final Application application) {
+        final DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
+        if (mNonCompatDensity != 0) {
+            appDisplayMetrics.density = mNonCompatDensity;
+            appDisplayMetrics.densityDpi = mNonCompatDensityDpi;
+            appDisplayMetrics.scaledDensity = mNonCompatScaledDensity;
+        }
+    }
+
+}
+
+```
