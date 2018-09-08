@@ -42,6 +42,11 @@ Host bitbucket.org
  HostName bitbucket.org  
  IdentityFile ~/.ssh/id_rsa 
 ```
+保存密码
+```
+git config --global credential.helper store
+
+```
 
 ## 设置vim为编辑器
 ```
