@@ -1,5 +1,5 @@
 ---
-title: 在mac下使用hexo搭建github pages博客
+title: 在Mac下使用Hexo搭建github-pages博客
 date: 2014-02-07 18:41:21
 tags:
 ---

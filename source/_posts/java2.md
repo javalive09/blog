@@ -1,5 +1,5 @@
 ---
-title: java2
+title: Java2
 date: 2014-04-16 21:21:28
 tags:
 ---

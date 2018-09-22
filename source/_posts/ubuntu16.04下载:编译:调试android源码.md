@@ -1,5 +1,5 @@
 ---
-title: ubunut16.04下载/编译/调试android源码
+title: Ubunut16.04下载/编译/调试Android源码
 date: 2018-05-29 16:28:21
 tags:
 ---

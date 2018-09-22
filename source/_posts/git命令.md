@@ -1,5 +1,5 @@
 ---
-title: git命令
+title: Git命令
 date: 2017-02-13 11:52:11
 tags:
 ---
