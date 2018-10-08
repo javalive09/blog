@@ -1083,7 +1083,7 @@ public class Log {
 2.程序强制关闭（fatal）
 3.程序无响应（Application No Response--ANR）
 分享anr文件/data/anr/traces.txt
-关键字：ANR空格
+关键字：ANR空格, DALVIK THREADS
 ```
 08-14 00:59:14.698 I/art     ( 4238): Wrote stack traces to '/data/anr/traces.txt'
 08-14 00:59:14.702 E/ActivityManager(  562): ANR in com.baidu.launcher
