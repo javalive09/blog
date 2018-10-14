@@ -15,9 +15,9 @@ tags:
 在单个程序中同时执行多个不同的任务。多线程的目的是为了最大限度的利用cpu资源。
 当程序运行时，会自动产生一个主线程，main方法就在这个主线程中运行。
 ## 生命周期
-![](http://7xoxmg.com1.z0.glb.clouddn.com/threadlife.jpg)
+![](/images/threadlife.jpg)
 ## 运行流程
-![](http://7xoxmg.com1.z0.glb.clouddn.com/threadlogic.jpg)
+![](/images/threadlogic.jpeg)
 ## 控制
 ### sleep() 
 睡眠
@@ -156,7 +156,7 @@ static Entry <K,V> implementsMap.Entry<K,V>{
 增加容量时2倍增加
 put元素时，会先对比hash值和equals内容。判断键值是否相等。
 可以用来做统计文字出现次数的容器
-![](http://7xoxmg.com1.z0.glb.clouddn.com/hashmap.jpg)
+![](/images/hashmap.jpg)
 
 ### TreeMap
 key 有序的map

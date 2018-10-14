@@ -18,9 +18,9 @@ tags:
 Java中的栈：每当启动一个线程时JVM就为他分配一个java栈，栈是以帧为单位保存当前线程的运行状态。每当调用一个java方法时，JVM会在该线程对应的栈中压入一个帧。执行这个方法时，它使用这个帧来存储参数、局部变量、this等信息。方法执行完栈中会弹出帧。数据结构中的栈：当需要回溯操作时会用栈。路径回溯、操作回溯。
 ### 寄存器
 用于计算寻址。
-![模型](http://7xoxmg.com1.z0.glb.clouddn.com/jvm1.jpg)
+![模型](/images/jvm1.jpg)
 ### 物理模型
-![模型](http://7xoxmg.com1.z0.glb.clouddn.com/jvm2.jpg)
+![模型](/images/jvm2.jpg)
 
 ## java虚拟机与程序的生命周期
 Java程序是寄生在虚拟机上的。一个应用程序对应一个虚拟机。它们的生命周期是一致的。
@@ -80,7 +80,7 @@ java实现，父加载器是系统类加载器。
 加载时采用的是父委托机制。（是逻辑上的parent关系，通过包含一个父加载器引用作为属性的方式实现。而不是继承上的关系）
 总是先用父加载器加载类，层层传递直到根加载器。如果父加载器加载不了，就用当前层的加载器加载。
 如果全都不能加载，则抛出ClassNotFoundException异常。
-![classloader](http://7xoxmg.com1.z0.glb.clouddn.com/classloader.jpg)
+![classloader](/images/classloader.png)
 
 ## java多线程内存模型
 ### 主存

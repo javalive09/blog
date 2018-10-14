@@ -5,9 +5,6 @@ tags:
 ---
 
 
-# git命令
-* [查看](http://200code.com/2017/02/13/git%E5%91%BD%E4%BB%A4/)
-
 # 常用命令
 ```
 git clone //克隆仓库
@@ -120,19 +117,7 @@ git reflog show
 
 # .git文件夹结构及git内部原理
 ## git-stage 暂存区
-![](http://7xoxmg.com1.z0.glb.clouddn.com/git-stage.jpg)
-
-## git-checkout 检出
-![](http://7xoxmg.com1.z0.glb.clouddn.com/git-checkout.jpg)
-
-## git-diff 对比差异
-![](http://7xoxmg.com1.z0.glb.clouddn.com/git-diff.jpg)
-
-## git-reset 重置
-![](http://7xoxmg.com1.z0.glb.clouddn.com/git-reset.jpg)
-
-## git-repos-detail 版本库
-![](http://7xoxmg.com1.z0.glb.clouddn.com/git-repos-detail.jpg)
+![](/images/git-stage.png)
 
 ## .git 文件夹结构
 HEAD

@@ -37,7 +37,7 @@ Enough about the tools, let’s head onto the development model. The model that 
 The repository setup that we use and that works well with this branching model, is that with a central “truth” repo. Note that this repo is only considered to be the central one (since Git is a DVCS, there is no such thing as a central repo at a technical level). We will refer to this repo as origin, since this name is familiar to all Git users.
 > 我们建立的这个仓库，使用的正是这个运行良好的分支模型，是一个集中式的仓库。注意，这个仓库我们认为它是一个集中式的仓库（git 是分布式的，从技术上来说没有集中仓库这一说）。我们把这个仓库称作origin，这个名字对于所有的git使用者来说都很熟悉。
 
-![](http://7xoxmg.com1.z0.glb.clouddn.com/centr-decentr.png)
+![](/images/centr-decentr.jpg)
 
 Each developer pulls and pushes to origin. But besides the centralized push-pull relationships, each developer may also pull changes from other peers to form sub teams. For example, this might be useful to work together with two or more developers on a big new feature, before pushing the work in progress to origin prematurely. In the figure above, there are subteams of Alice and Bob, Alice and David, and Clair and David.
 > 每一个开发人员都从origin进行pull和push操作。但是除了集中式的pull和push操作以外，每个开发者也需要从其他子团队的节点pull到差异化的代码。比如，对于可能有2个或者更多的开发者共同开发一个大的功能，在贸然把代码push到origin来同步工作进度前的这种情况下这么做是有用的。在上图中，Alice 和Bob在一个子团队中，Alice和David在一个子团队中，Clair和David在一个子团队中。
@@ -59,7 +59,7 @@ The master branch at origin should be familiar to every Git user. Parallel to th
   develop
 origin上的master分支对于每个git开发者来说都很熟悉。平行于master的另一分支是develop。
 
-![](http://7xoxmg.com1.z0.glb.clouddn.com/main-branches@2x.png)
+![](/images/main-branches@2x.jpg)
 We consider origin/master to be the main branch where the source code of HEAD always reflects a production-ready state.
 > 我们把代码HEAD指向的origin/master作为反映产品就绪状态的主要分支。
 
@@ -87,8 +87,6 @@ The different types of branches we may use are:
   Release branches
   Hotfix branches
  
-![](http://7xoxmg.com1.z0.glb.clouddn.com/fb@2x.png)
-
 Each of these branches have a specific purpose and are bound to strict rules as to which branches may be their originating branch and which branches must be their merge targets. We will walk through them in a minute.
 > 这些特性分支，每一个分支都有特定的目的和严格的操作规则，从哪个分支checkout，合并到哪个分支，都有限制，我们一会儿会走一遍整个流程。
 
@@ -111,7 +109,7 @@ anything except master, develop, release\-\*, or hotfix\-\*
 除了 master, develop, release-*, or hotfix-* 任意名字都可
 ```
 
-![](http://7xoxmg.com1.z0.glb.clouddn.com/fb@2x.png)
+![](/images/fb@2x.jpg)
 
 Feature branches (or sometimes called topic branches) are used to develop new features for the upcoming or a distant future release. When starting development of a feature, the target release in which this feature will be incorporated may well be unknown at that point. The essence of a feature branch is that it exists as long as the feature is in development, but will eventually be merged back into develop (to definitely add the new feature to the upcoming release) or discarded (in case of a disappointing experiment).
 Feature branches typically exist in developer repos only, not in origin.
@@ -148,7 +146,7 @@ $ git push origin develop
 The --no-ff flag causes the merge to always create a new commit object, even if the merge could be performed with a fast-forward. This avoids losing information about the historical existence of a feature branch and groups together all commits that together added the feature. Compare:
 > --no-ff 将会创建新的提交点，即使是一个快进的提交。这会避免丢失特性分支的所有提交的历史信息，对比如下：
 
-![](http://7xoxmg.com1.z0.glb.clouddn.com/merge-without-ff@2x.png)
+![](/images/fb2@2x.jpg)
 
 In the latter case, it is impossible to see from the Git history which of the commit objects together have implemented a feature—you would have to manually read all the log messages. Reverting a whole feature (i.e. a group of commits), is a true headache in the latter situation, whereas it is easily done if the --no-ff flag was used.
 Yes, it will create a few more (empty) commit objects, but the gain is much bigger than the cost.
@@ -248,6 +246,8 @@ Deleted branch release-1.2 (was ff452fe).
 
 ## Hotfix branches
 > 紧急bug修复分支
+
+![](/images/hotfix.jpg)
 
 May branch off from: master
 Must merge back into: develop and master
