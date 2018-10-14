@@ -9,7 +9,7 @@ tags:
 In this post I present the development model that I’ve introduced for some of my projects (both at work and private) about a year ago, and which has turned out to be very successful. I’ve been meaning to write about it for a while now, but I’ve never really found the time to do so thoroughly, until now. I won’t talk about any of the projects’ details, merely about the branching strategy and release management.
 > 在这篇文章中我介绍了一个大概一年前引入到我的开发项目（工作项目和个人项目）中的事实证明非常成功的开发模型。一直以来我都想写一篇关于它的文章，直到现在才真正有一个充分的时间来写它。我不会谈论任何的项目细节，仅仅是关于分支的策略和分支发布的管理。
 
-![](https://searcher.oss-cn-qingdao.aliyuncs.com/git-model.png)
+![](/images/git-model.png)
 
 It focuses around Git as the tool for the versioning of all of our source code. (By the way, if you’re interested in Git, our company GitPrime provides some awesome realtime data analytics on software engineering performance.)
 > 这张图集中描述了围绕git做为所有源码的版本控制工具的流程。（同时，如果你对git感兴趣，欢迎使用我们公司GitPrime 提供的软件性能实时分析工具）
