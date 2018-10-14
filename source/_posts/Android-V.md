@@ -700,7 +700,7 @@ y 参数的意义是文字的底部的坐标。
 
 ## 像素的结构
 颜色（一个像素用一个int表示，32位真彩色）
-![](http://7xoxmg.com1.z0.glb.clouddn.com/pixel.jpg)
+![](/images/pixel.jpg)
 alpha通道：透明度，0~255 共256级透明度
 一张图片所占内存 = wide * hight * 4 byte
 
@@ -886,7 +886,7 @@ public void setScrollY(int value) {
 scroll方法针对的是view中的内容。
 如view.scrollTo(50,0); 表示的是针对内容的（0，0）坐标view滚动了50个像素。
 展现的是，内容向左边移动了50个像素。
-![](http://7xoxmg.com1.z0.glb.clouddn.com/scroll.jpg)
+![](/images/scroll.png)
 
 ## LayoutInflater 的inflate(int resource, ViewGroup root, boolean attachToRoot)方法研究
 ### 情况一： root =null,  attachToRoot = false;
@@ -1169,7 +1169,7 @@ pw.showAtLocation(this, Gravity.NO_GRAVITY, 0, statusBarHeight);
 
 # 设备的适配
 [官方文档](https://developer.android.google.cn/guide/practices/screens_support.html?hl=zh-cn)
-![](http://7xoxmg.com1.z0.glb.clouddn.com/fitres.jpg)
+![](/images/fitres.jpeg)
 
 
 ## 一套代码适配不同屏幕设备。
