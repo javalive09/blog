@@ -620,6 +620,18 @@ service
 ## 5.Empty进程    
 按下back键
 
+android 8.0 查询的adj数值
+activity:
+前台：0
+后台（按下home键）：11
+退出（按下back键）：15 
+
+service：
+前台：3
+后台：8
+
+应用无service广播开机自启动：13
+
 ------
 
 # Android 中的一些时间
