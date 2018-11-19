@@ -129,7 +129,8 @@ build\core\version_defaults.mk //搜索该文件中的 PLATFORM_VERSION值
 ## 准备
 检查out/host/linux-x86/framework/目录下是否存在idegen.jar文件,存在则说明你已经编译过该模块,否者,则需要编译.执行如下命令即可:
 ```
-soruce build/envsetup.sh
+source build/envsetup.sh
+lunch xx
 mmm development/tools/idegen/
 sudo ./development/tools/idegen/idegen.sh
 ```
