@@ -31,6 +31,9 @@ tags:
 ### onNewintent()
 2，3，4 复用时会调用onNewintent（）
 
+## startActivityForResult问题？
+在新的栈中startActivityForResult，会导致onActivityResult回调逻辑问题。最好在同一个栈中调用。
+
 ## application, task, activity 的关系？
 task是任务的概念 本质是个栈 一个task任务对应一个acivity集合；通过配置activity的Android:taskAffinity来控制。
 一个task中可以有多个应用的activity。
@@ -620,7 +623,7 @@ service
 ## 5.Empty进程    
 按下back键
 
-android 8.0 查询的adj数值
+# android 8.0 查询的adj数值
 activity:
 前台：0
 后台（按下home键）：11
@@ -631,6 +634,10 @@ service：
 后台：8
 
 应用无service广播开机自启动：13
+
+标记 android:persistent 
+系统应用: -13
+非系统应用: 没有任何影戏
 
 ------
 
@@ -1121,4 +1128,87 @@ public class Log {
 Secure：第三方APP有读权限；系统应用可读，需要加android.permission.WRITE_SECURE_SETTINGS权限可写
 System：第三方APP有读权限；系统应用可读，需要加android.permission.WRITE_SETTINGS权限可写
 Global：第三方APP有读权限；系统应用可读，需要加android.permission.WRITE_SECURE_SETTINGS权限可写
+
+
+# 最简单的进程间通讯方式
+
+contentprovider call方法
+
+## 被其他应用调用访问的权限设置：
+
+```
+    <permission
+            android:name="com.xxx.xxx.permission.INTER_APP_COMMUNICATION"
+            android:protectionLevel="signature"/>
+```
+
+## 其他应用调用这个应用的方式：
+
+```
+    public static Bundle callOtherAppMethod(Context context, Uri uri, String method, String arg, Bundle bundle) {
+        try {
+            return context.getContentResolver().call(uri, method, arg, bundle);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+```
+
+## 被其他应用访问的下发逻辑：
+
+```
+public class SettingsContentProvider extends ContentProvider {
+
+    private static final HashMap<String, IMethodCallback> METHODS = new HashMap<>();
+
+    @Override
+    public Bundle call(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
+        if (getContext() != null) {
+            return dispatchEvent(method, arg, extras);
+        }
+        return super.call(method, arg, extras);
+    }
+
+    private Bundle dispatchEvent(@NonNull String method, @Nullable String arg, @Nullable Bundle extras) {
+        if (METHODS.containsKey(method)) {
+            IMethodCallback callback = METHODS.get(method);
+            if (callback != null) {
+                callback.call(method, arg, extras);
+            }
+        }
+        return null;
+    }
+
+    public static void registerMethod(IMethodCallback callback, String... methods) {
+        for (String method : methods) {
+            METHODS.put(method, callback);
+        }
+    }
+
+    public static void unRegisterMethod(String... methods) {
+        for (String method : methods) {
+            METHODS.remove(method);
+        }
+    }
+
+}
+
+```
+
+## 要点：
+
+应用A 访问 应用B（提供contentprovider）
+应用A（调用者）如果在主线程调用则主线程阻塞   应用B（被调用者）会单独开辟一个线程1执行call方法
+如果B线程1阻塞状态  会新开一个线程2执行call 同时线程1sleep
+最后会多出1个线程
+也就是说阻塞次数越多 线程数就越多
+线程名字为：12345678910abcdef 超过16个阻塞线程应用B会黑屏，应用A如果在主线程调用call会ANR
+
+
+
+
+
+
+
 
