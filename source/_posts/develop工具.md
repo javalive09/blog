@@ -125,3 +125,34 @@ apktool d -f c:\test.apk -o c:\test
 [官网](http://jd.benow.ca/)
 将Jar包文件反编译成java源文件
 [参考文章](https://www.jianshu.com/p/2bbe7112f940)
+
+# sublime 
+[官网](https://www.sublimetext.com)
+一个好用的文本编辑器。查看log，markdown比较方便
+
+## 在线安装插件
+通过 Package Control 进行在线安装
+
+"View" > "Show Console" 
+
+粘贴如下代码：[以官网为准](https://packagecontrol.io/installation#st3)
+```
+import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)
+
+```
+重启Sublime Text即可。
+
+## 安装markdown插件OmniMarkupPreviewer
+preferences > PackageControl > "install Packages" > OmniMarkupPreviewer > 重启即可
+使用：右键点击选择preview markdown
+
+## 安装log查看插件
+preferences > PackageControl > "install Packages" > "Filter lines" > 重启即可
+使用：toolbar : edit > "code Folding" > "Fold with string"
+
+
+
+
+
+
+
