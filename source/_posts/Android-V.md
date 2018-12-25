@@ -1235,6 +1235,8 @@ public class DensityUtil {
 ```
 
 # 不透明度列表
+注：view.setAlpha(0.5)是全局的 
+会导致view的子view全部都变成这个透明度
 
 | 不透明度       | 数值   | 
 | --------   | :----- | 

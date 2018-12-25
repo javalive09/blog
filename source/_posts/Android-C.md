@@ -1206,6 +1206,8 @@ public class SettingsContentProvider extends ContentProvider {
 线程名字为：12345678910abcdef 超过16个阻塞线程应用B会黑屏，应用A如果在主线程调用call会ANR
 
 
+# 从网络获取数据注意：
+从接口获取的数据  不要自己过滤后显示（比如是空就不刷新） 这样很容易会引起逻辑错误。不要截断数据流，让数据流走完整个流程。
 
 
 
