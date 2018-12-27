@@ -239,7 +239,7 @@ git rebase -i <commitId-last>
 ```
 ### push到服务器
 ```
-git revert <commitId>
+git revert <commitId> // revert commitId 这次提交
 ```
 
 ## 3.修改提交信息

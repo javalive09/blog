@@ -151,6 +151,9 @@ preferences > PackageControl > "install Packages" > "Filter lines" > 重启即�
 使用：toolbar : edit > "code Folding" > "Fold with string"
 
 
+# OmniDiskSweeper
+[官网](https://www.omnigroup.com/more)
+一个免费的mac磁盘清理工具
 
 
 
