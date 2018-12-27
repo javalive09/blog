@@ -1341,3 +1341,53 @@ public class DensityUtil {
 |98% |FA|
 |99% |FC|
 |100%|FF|
+
+
+# VSync
+
+## 帧率
+即 Frame Rate，单位 fps，是指 gpu 生成帧的速率，如 33 fps，60fps，越高越好。
+
+## 屏幕刷新频率
+即 Refresh Rate 或 Scanning Frequency，单位赫兹/Hz，是指设备刷新屏幕的频率，该值对于特定的设备来说是个常量，如 60hz。
+对于一个特定的设备，帧率和刷新频率没有必然的大小关系。
+![](/images/screen_refresh.jpg)
+
+
+## VSync
+屏幕的刷新过程是每一行从左到右（行刷新，水平刷新，Horizontal Scanning），从上到下（屏幕刷新，垂直刷新，Vertical Scanning）。当整个屏幕刷新完毕，即一个垂直刷新周期完成，会有短暂的空白期，此时发出 VSync 信号。所以，VSync 中的 V 指的是垂直刷新中的垂直/Vertical。
+
+安卓系统中有 2 种 VSync 信号：屏幕产生的硬件 VSync 和由 SurfaceFlinger 将其转成的软件 Vsync 信号。后者经由 Binder 传递给 Choreographer。 
+硬件 VSync 是一个脉冲信号，起到开关或触发某种操作的作用。 
+
+## 单缓存
+CPU/GPU 向 Buffer 中生成图像，屏幕从 Buffer 中取图像、刷新后显示。这是一个典型的生产者——消费者模型。 
+理想的情况是帧率和刷新频率相等，每绘制一帧，屏幕显示一帧。而实际情况是，二者之间没有必然的大小关系，如果没有锁来控制同步，很容易出现问题。例如，当帧率大于刷新频率，当屏幕还没有刷新第 n-1 帧的时候，GPU 已经在生成第 n 帧了，从上往下开始覆盖第 n-1 帧的数据，当屏幕开始刷新第 n-1 帧的时候，Buffer 中的数据上半部分是第 n 帧数据，而下半部分是第 n-1 帧的数据，显示出来的图像就会出现上半部分和下半部分明显偏差的现象，我们称之为 “tearing”
+![](/images/one_buffer.jpg)
+
+
+## 双缓存（Double Buffer）
+为了解决单缓存的“tearing”问题，双重缓存和 VSync 应运而生。
+两个缓存区分别为 Back Buffer 和 Frame Buffer。GPU 向 Back Buffer 中写数据，屏幕从 Frame Buffer 中读数据。VSync 信号负责调度从 Back Buffer 到 Frame Buffer 的复制操作，可认为该复制操作在瞬间完成。其实，该复制操作是等价后的效果，实际上双缓冲的实现方式是交换 Back Buffer 和 Frame Buffer 的名字，更具体的说是交换内存地址。
+双缓冲的模型下，工作流程这样的： 
+在某个时间点，一个屏幕刷新周期完成，进入短暂的刷新空白期。此时，VSync 信号产生，先完成复制操作，然后通知 CPU/GPU 绘制下一帧图像。复制操作完成后屏幕开始下一个刷新周期，即将刚复制到 Frame Buffer 的数据显示到屏幕上。
+
+在这种模型下，只有当 VSync 信号产生时，CPU/GPU 才会开始绘制。这样，当帧率大于刷新频率时，帧率就会被迫跟刷新频率保持同步，从而避免“tearing”现象。
+
+注意，当 VSync 信号发出时，如果 GPU/CPU 正在生产帧数据，此时不会发生复制操作。屏幕进入下一个刷新周期时，从 Frame Buffer 中取出的是“老”数据，而非正在产生的帧数据，即两个刷新周期显示的是同一帧数据。这是我们称发生了“掉帧”（Dropped Frame，Skipped Frame，Jank）现象。
+![](/images/double_buffer.jpg)
+
+
+
+## 三缓存（Triple Buffer）
+双缓冲的问题在于：当 CPU/GPU 绘制一帧的时间超过 16 ms 时，会产生 Jank。更要命的是，产生 Jank 的那一帧的显示期间，GPU/CPU 都是在闲置的。 
+如下图，A、B 和 C 都是 Buffer。蓝色代表 CPU 生成 Display List，绿色代表 GPU 执行 Display List 中的命令从而生成帧，黄色代表生成帧完成。 
+![](/images/double_buffer_jank.jpg)
+如果有第三个 Buffer 能让 CPU/GPU 在这个时候继续工作，那就完全可以避免第二个 Jank 的发生了！
+![](/images/triple_buffer_jank.jpg)
+于是就有了三缓存
+![](/images/triple_buffer.jpg)
+
+需要注意的是，第三个缓存并不是总是存在的，只要当需要的时候才会创建。之所以这样，是因为三缓存会显著增加用户输入到显示的延迟时间。如上图，帧 C 是在第 2 个刷新周期产生的，但却是在第 4 个周期显示的。最坏的情况下，你会同时遇到输入延迟和卡顿现象。
+
+
