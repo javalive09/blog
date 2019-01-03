@@ -156,6 +156,53 @@ preferences > PackageControl > "install Packages" > "Filter lines" > 重启即�
 一个免费的mac磁盘清理工具
 
 
+# leakcanary
+[官网](https://github.com/square/leakcanary)
+android监听内存泄漏工具
+
+## 依赖
+```
+dependencies {
+  debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
+  releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
+  // Optional, if you use support library fragments:
+  debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.2'
+}
+```
+
+## 监听activity泄漏
+```
+public class MyApplication extends Application {
+
+  @Override 
+  public void onCreate() {
+    super.onCreate();
+    LeakCanary.install(this);
+  }
+}
+```
+
+## 监听其他对象泄漏
+```
+public class MyApplication extends Application {
+    private static RefWatcher sRefWatcher;
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        sRefWatcher = LeakCanary.install(this);
+    }
+
+    public static RefWatcher getRefWatcher() {
+        return sRefWatcher;
+    }
+}
+
+//在对象肯被回收处添加,如fragment中的onDestory():
+MyApplication.getRefWatcher().watch(sLeaky);
+
+```
 
 
 
