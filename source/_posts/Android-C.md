@@ -1097,6 +1097,7 @@ public class Log {
 
 
 # android log 分析
+系统log保存地址 /data/log
 关键字fatal、exception、No Response、crash、panic
 1.程序异常退出（fatal）
 2.程序强制关闭（fatal）
