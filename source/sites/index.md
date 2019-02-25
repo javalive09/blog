@@ -12,7 +12,7 @@ date: 2017-02-13 18:07:08
 
 ------
 
-[godaddy](https://sg.godaddy.com/zh)&emsp;&emsp;[百度统计](http://tongji.baidu.com/web/18525219/homepage/index)&emsp;&emsp;[七牛](https://portal.qiniu.com/create)&emsp;&emsp;[js静态库](http://www.bootcdn.cn)&emsp;&emsp;
+[godaddy](https://sg.godaddy.com/zh)&emsp;&emsp;[百度统计](http://tongji.baidu.com/web/18525219/homepage/index)&emsp;&emsp;[七牛](https://portal.qiniu.com/create)&emsp;&emsp;[js静态库](http://www.bootcdn.cn)&emsp;&emsp;[优优-图片](https://200code.com/sites/youyou_pic)&emsp;&emsp;[优优-视频](https://200code.com/sites/youyou_video)&emsp;&emsp;
 
 ------
 
