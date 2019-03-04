@@ -221,3 +221,52 @@ source ~/.bashrc //立即生效
 
 5.面到了最关键的一步，就是把现有的文件夹中的classes打包成java文件，首先在解压android.jar的根目录下面打开cmd命令窗口，输入命令jar cvfm android.jar META-INF/MANIFEST.MF ./ 。如果找不到jar，请先配置环境变量。接着就看到这个打包的详细信息在控制台输出。关于jar的详细命令参数请看这里 [jar命令详解](https://blog.csdn.net/xyw_blog/article/details/8827937)顺利的话，就可以得到一个android.jar 文件了。
 
+
+
+# 开机自动挂载硬盘
+
+## 查看分区信息
+```
+sudo fdisk -l 
+
+```
+
+## 创建/data目录（/data目录为硬盘将挂载的地方）：
+```
+sudo mkdir /data
+
+```
+
+## 挂载硬盘
+```
+sudo mount /dev/sdb1 /data   
+
+```
+
+## 查看磁盘分区的UUID
+```
+sudo blkid  
+
+```
+
+## 配置开机自动挂载
+因为mount命令会在重启服务器后失效，所以要将分区信息写到/etc/fstab文件中让它永久挂载
+```
+sudo vim /etc/fstab
+
+```
+加入
+```
+UUID=11263962-9715-473f-9421-0b604e895aaa /data ext4 defaults 0 1
+
+```
+
+## 验证
+命令验证一下配置是否正确。如果配置不正确可能会导致系统无法正常启动。
+
+```
+sudo mount -a
+
+```
+
+## 重启
