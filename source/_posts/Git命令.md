@@ -172,7 +172,7 @@ git push
 
 # 恢复
 ```
-git reflog show 
+git reflog show // 或者简写 git reflog
 git branch recover_branch commitid
 ```
 
