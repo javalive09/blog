@@ -518,6 +518,37 @@ public class CrashHandler implements UncaughtExceptionHandler {
 }
 ```
 
+# String技巧
+
+StringFormat 补0；
+
+```
+        for (int i = 0; i < 24; i++) {
+            if (i < 10) {
+                mHours.add("0" + String.valueOf(i));
+            } else {
+                mHours.add(String.valueOf(i));
+            }
+        }
+
+        for (int i = 0; i < 60; i++) {
+            if (i < 10) {
+                mMinutes.add("0" + String.valueOf(i));
+            } else {
+                mMinutes.add(String.valueOf(i));
+            }
+        }
+```
+
+```
+        for (int i = 0; i < 24; i++) {
+            mHours.add(String.format(Local.getDefault(), "%02d"), i));
+        }
+
+        for (int i = 0; i < 60; i++) {
+            mMinutes.add(String.format(Local.getDefault(), "%02d",i));
+        }
+```
 
 
 
