@@ -126,6 +126,7 @@ _offx 实例化
 帧动画 补间动画 android.view.animation.Interpolator在view包下
 属性动画 android.animation.TimeInterpolator 在animation包下
 4.0 之后 Interpolator 继承自TimeInterpolator
+[从数学公式入手，详细了解 Animation 的 Interpolators](http://yifeng.studio/2017/06/23/android-animation-interpolators/)
 
 ### Transformation
 animation中通过applyTransformation() 来改变transformation 来作动画
