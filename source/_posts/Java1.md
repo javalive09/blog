@@ -451,6 +451,31 @@ gc线程工作时发现引用计数器为0的对象就会回收它。
 	    String s;
     }
  ```
+## ReferenceQueue的作用
+SoftReference, WeakReference, PhantomReference 都可以在构造的时候加入ReferenceQueue参数。
+当包装对象被gc的时候，对应的包装类reference会被放入ReferenceQueue中。通过检查ReferenceQueue是否为空来判断对象的回收。
+例如 leakcanary中对对象是否回收的判断
+```
+private void removeWeaklyReachableReferences() {
+    KeyedWeakReference ref;
+    while((ref = (KeyedWeakReference) queue.poll()) != null) {
+        retainedKeys.remove(ref.key);
+    }
+}
+```
+
+## Queue 中的几个方法的区别
+```
+add：当添加元素个数超过队列的限制 抛出异常
+offer：当添加元素个数超过队列的限制 不抛出异常 只返回false
+
+remove：删除队列第一个元素，当队列为空时 抛出异常
+poll：删除队列第一个元素，当队列为空时 不抛出异常 只返回null
+
+element: 查询队列第一个元素，当队列为空时 抛出异常
+peek：查询队列第一个元素，当队列为空时 不抛出异常 只返回null
+```
+
 
 ### Soft vs Weak vs Phantom References
 
