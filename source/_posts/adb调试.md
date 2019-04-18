@@ -339,6 +339,7 @@ am start -n com.javalive09.app/.MainActivity --efal nums 1.2,2.2
 
 ### Flag参数
 -f <FLAGS>，是通过Intent.setFlags(int )方法，来设置Intent的flags
+
 ```
 [--grant-read-uri-permission] [--grant-write-uri-permission]
 [--grant-persistable-uri-permission] [--grant-prefix-uri-permission]
@@ -353,11 +354,9 @@ am start -n com.javalive09.app/.MainActivity --efal nums 1.2,2.2
 [--activity-single-top] [--activity-clear-task]
 [--activity-task-on-home]
 [--receiver-registered-only] [--receiver-replace-pending]
-```	
-```
-// 发送action=”broadcast.demo”的广播，并且对于forceStopPackage()的应用不允许接收该广播
-am broadcast -a broadcast.demo --exclude-stopped-packages
 
+//发送action=”broadcast.demo”的广播，并且对于forceStopPackage()的应用不允许接收该广播
+am broadcast -a broadcast.demo --exclude-stopped-packages
 ```
 
 ------
