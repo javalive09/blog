@@ -6,6 +6,8 @@ tags:
 
 [adbshell.com](http://adbshell.com/)
 
+------
+
 # sync
 ```
 adb root && adb remount && adb sync system && adb reboot //同步代码调试系统应用
