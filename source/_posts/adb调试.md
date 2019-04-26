@@ -13,6 +13,9 @@ tags:
 adb root && adb remount && adb sync system && adb reboot //同步代码调试系统应用
 ```
 
+------
+
+
 # install
 ```
 adb install test.apk 
