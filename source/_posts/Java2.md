@@ -153,10 +153,19 @@ static Entry <K,V> implementsMap.Entry<K,V>{
 }
 ```
 默认数组长度为16
-增加容量时2倍增加
+默认负载因子0.75 (可在初始化时显式指定)
+当size > 12(16 * 0.75) 扩容，扩容到容量的2倍（16*2）
 put元素时，会先对比hash值和equals内容。判断键值是否相等。
 可以用来做统计文字出现次数的容器
 ![](/images/hashmap.jpg)
+
+### concurrentHashmap
+segments 
+put时候，由于锁分段技术 多个锁保证 put的效率
+get时候，由于value用volatile修饰，是透明的，可以完全无锁 保证效率
+
+![](/images/currentHashMap.png)
+
 
 ### TreeMap
 key 有序的map

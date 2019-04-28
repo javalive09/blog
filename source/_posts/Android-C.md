@@ -1210,6 +1210,12 @@ public class SettingsContentProvider extends ContentProvider {
 # 从网络获取数据注意：
 从接口获取的数据  不要自己过滤后显示（比如是空就不刷新） 这样很容易会引起逻辑错误。不要截断数据流，让数据流走完整个流程。
 
+# AsyncTask
+
+1. sdk < 22（5.1） AsyncTask 的Handler使用的new Handler（），如果在非主线程中创建，则有可能不是mainlooper。 sdk > 16(4.1) 在APP主线程ActivityThread的main函数里面，直接调用了AscynTask.init函数确保这个类是在主线程初始化的, 所以sk < 16 必须在main线程中创建 AsyncTask。
+2. sdk = 1.5 串行，  sdk = 1.6 并行，  sdk >= 3.0 串行  串行的原因 是为了保证 多线程执行doinbackground（）方法里面并没有同步锁，当访问相同资源的时候会产生并发脏数据。
+
+
 
 
 
