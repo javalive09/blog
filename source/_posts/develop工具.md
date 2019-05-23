@@ -164,12 +164,14 @@ preferences > PackageControl > "install Packages" > "Filter lines" > 重启即�
 
 # ADB idea plug
 [官网](https://github.com/pbreault/adb-idea)
-- [x] Uninstall App
-- [x] Kill App
-- [x] Start App
-- [x] Restart App
-- [x] Clear App Data
-- [x] Clear App Data and Restart
+
+
+- Uninstall App
+- Kill App
+- Start App
+- Restart App
+- Clear App Data
+- Clear App Data and Restart
 
 # singletonTest plug
 单例模板插件
