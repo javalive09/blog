@@ -156,54 +156,39 @@ preferences > PackageControl > "install Packages" > "Filter lines" > 重启即�
 一个免费的mac磁盘清理工具
 
 
-# leakcanary
-[官网](https://github.com/square/leakcanary)
-android监听内存泄漏工具
-
-## 依赖
-```
-dependencies {
-  debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
-  releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
-  // Optional, if you use support library fragments:
-  debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.2'
-}
-```
-
-## 监听activity泄漏
-```
-public class MyApplication extends Application {
-
-  @Override 
-  public void onCreate() {
-    super.onCreate();
-    LeakCanary.install(this);
-  }
-}
-```
-
-## 监听其他对象泄漏
-```
-public class MyApplication extends Application {
-    private static RefWatcher sRefWatcher;
-
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        sRefWatcher = LeakCanary.install(this);
-    }
-
-    public static RefWatcher getRefWatcher() {
-        return sRefWatcher;
-    }
-}
-
-//在对象肯被回收处添加,如fragment中的onDestory():
-MyApplication.getRefWatcher().watch(sLeaky);
-
-```
-
-
 # 流程图
 [ProcessOn](https://www.processon.com/diagrams)
+
+# postman
+[官网](https://www.getpostman.com/downloads/)
+
+# ADB idea plug
+[官网](https://github.com/pbreault/adb-idea)
+- [x] Uninstall App
+- [x] Kill App
+- [x] Start App
+- [x] Restart App
+- [x] Clear App Data
+- [x] Clear App Data and Restart
+
+# singletonTest plug
+单例模板插件
+
+# RoboPOJOGenerator plug
+json 字符转换成pojo对象插件
+[官网](https://github.com/robohorse/RoboPOJOGenerator)
+
+# .ignore plug 
+git 自动生成ignore文件工具
+[官网](http://ignore.hsz.mobi/)
+
+# eclipse 快捷键
+```
+ctrl + O        outline
+ctrl + D        delete
+ctrl + L        point line
+ctrl + H        hunt
+ctrl + alt + ↓  copyline 
+ctrl + alt + L  reformat code
+
+```
