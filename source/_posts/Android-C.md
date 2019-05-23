@@ -587,6 +587,7 @@ b. AIDL除了请求回复，还具有推送功能，AIDL service端使用RemoteC
 ------
 
 # BroadcastReceiver
+
 ## 分类
 ### 根据注册方式：
 1.代码注册
@@ -596,6 +597,16 @@ b. AIDL除了请求回复，还具有推送功能，AIDL service端使用RemoteC
 2.无序广播，无优先级。
 
 > 注：广播启动activity必须加入FLAG_ACTIVITY_NEW_TASK标记。
+
+### 根据发送范围
+1.全局
+2.定向
+通过设置component定向发送广播
+```
+Intent intent = new Intent();
+intent.setComponent(new ComponentName(pkgName, className));
+context.sendBroadcast(intent);
+```
 
 ## 本地广播
 ### 注册
