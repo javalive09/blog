@@ -1087,12 +1087,18 @@ activity.overridePendingTransition(inAnim, outAnim);
 </style>  
 ```
 ## 不影响系统交互的悬浮窗window参数设置
-type:
+type: Z-Order
+表示window层级关系的变量
+应用类型的窗口的type范围是１~99（activity window）
+子窗口的type范围是1000~1999（PopWindow，Dialog）
+系统的窗口的type范围是2000以上
 ```
 WindowManager.LayoutParams.TYPE_TOAST
 ```
-flag：
+flag：窗口控制的标记
+常亮，焦点，操作 等控制
 ```
+WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|
         WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
 ```

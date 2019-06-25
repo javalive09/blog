@@ -137,7 +137,9 @@ add时用key来存值，value为一个object对象
 add时用key来存值，value为一个object对象
 ## Map
 ### HashMap
-key无序的map，本质是Entry数组和单向链表的结合。
+key无序的map，
+jdk1.7: 本质是Entry数组 + 单向链表。
+jdk1.8: 本质是Entry数组 + 红黑树。
 ```
 transient Entry[] table
 static Entry <K,V> implementsMap.Entry<K,V>{

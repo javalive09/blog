@@ -513,6 +513,29 @@ ArrayIndexOutOfBoundsException
 IllegalArgumentException
 ArithmeticException
 
+## try-with-resource
+对于使用完一定会关闭的逻辑 可以使用try with resource 代替try catch finally 实时上java8 后中很多io相关操作都已经支持
+AutoCloseable 接口。
+```
+        try (Resource resource = new Resource()){
+            resource.doSomething();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        class Resource implements AutoCloseable{
+
+        @Override
+        public void close() throws Exception {
+            Log.i("peter", "auto close");
+        }
+
+        public void doSomething() {
+            Log.i("peter", "doSomething");
+        }
+    }
+```
+
 ## 结构
 Throwable
 |_____Error
