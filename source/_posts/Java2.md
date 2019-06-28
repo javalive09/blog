@@ -23,6 +23,12 @@ tags:
 睡眠
 ### join() 
 加入启动它的线程，让异步变同步
+调用join时会阻塞当前线程
+```
+        Thread t = new Thread(() -> SystemClock.sleep(50 * 1000));
+        t.start();
+        t.join(20 * 1000); // 当前线程阻塞20秒
+```
 ### yield()
 让出，让给相同优先级的其他线程执行
 ### notify()
@@ -83,6 +89,27 @@ public class DaemonTest {
         System.out.println("Main thread exited.");     
     }     
 }    
+```
+
+## Callable
+有返回值的线程
+调用get方法时会阻塞调用线程
+```
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> future = executorService.submit(() -> {
+            SystemClock.sleep(20 * 1000);
+            return "result";
+        });
+        String result = "time out";
+        try {
+             result = future.get(5, TimeUnit.SECONDS); // 当前线程阻塞5秒
+        }catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
 ```
 
 ------
