@@ -1349,6 +1349,18 @@ public class DensityUtil {
 |99% |FC|
 |100%|FF|
 
+# 增加view 触摸面积
+## 设置padding
+## 使用TouchDelegate
+```
+        llayout.post(new Runnable() {
+            @Override
+            public void run() {
+                llayout.setTouchDelegate(new TouchDelegate(
+                        new Rect(0, 0, llayout.getMeasuredWidth()/2, llayout.getMeasuredHeight()), img));
+            }
+        });
+```
 
 # VSync
 
