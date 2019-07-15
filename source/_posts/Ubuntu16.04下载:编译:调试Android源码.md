@@ -116,8 +116,8 @@ sudo update-alternatives --config java  
 
 ## 开始编译
 ```
-source build/envsetup.sh
-lunch
+source build/envsetup.sh // 用于运行shell脚本命令，功能等价于”.”，因此该命令也等价于. build/envsetup.sh
+lunch // 指定此次编译的目标设备以及编译类型
 make -j4
 ```
 
