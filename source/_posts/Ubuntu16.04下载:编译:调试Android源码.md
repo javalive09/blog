@@ -117,8 +117,22 @@ sudo update-alternatives --config java  
 ## 开始编译
 ```
 source build/envsetup.sh
+lunch
 make -j4
 ```
+
+### 编译某个模块
+```
+m：编译所有的模块
+mm：编译当前目录下的模块，当前目录下要有Android.mk文件 
+mmm：编译指定路径下的模块，指定路径下要有Android.mk文件 
+```
+
+### 清理编译产物
+```
+make clobber //相当于 rm -rf out/
+```
+
 
 # 查看Android源码版本
 ```
