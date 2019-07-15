@@ -133,6 +133,8 @@ mmm：编译指定路径下的模块，指定路径下要有Android.mk文件
 make clobber //相当于 rm -rf out/
 ```
 
+### [编译相关知识的帖子](http://gityuan.com/2016/03/19/android-build/)
+
 
 # 查看Android源码版本
 ```
