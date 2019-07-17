@@ -118,6 +118,7 @@ sudo update-alternatives --config java  
 ```
 source build/envsetup.sh // 用于运行shell脚本命令，功能等价于”.”，因此该命令也等价于. build/envsetup.sh
 lunch // 指定此次编译的目标设备以及编译类型
+make update-api //更新系统接口
 make -j4
 ```
 
@@ -130,7 +131,8 @@ mmm：编译指定路径下的模块，指定路径下要有Android.mk文件
 
 ### 清理编译产物
 ```
-make clobber //相当于 rm -rf out/
+make clobber // 相当于 rm -rf out/
+make install clean // 在切换编译目标时需要执行make installclean，用以清除之前编译生成的文件。
 ```
 
 ### [编译相关知识的帖子](http://gityuan.com/2016/03/19/android-build/)
