@@ -1137,9 +1137,9 @@ public class Log {
 # SettingsProvider 读写
 系统应用是指：在system/app或system/pri-app目录下的应用 可以和系统签名不一致
 
-Secure：第三方APP有读权限；系统应用可读，需要加android.permission.WRITE_SECURE_SETTINGS权限可写
-System：第三方APP有读权限；系统应用可读，需要加android.permission.WRITE_SETTINGS权限可写
-Global：第三方APP有读权限；系统应用可读，需要加android.permission.WRITE_SECURE_SETTINGS权限可写
+Secure：第三方APP有读权限没有写权限；系统应用可读可写，需要加android.permission.WRITE_SECURE_SETTINGS权限可写
+System：第三方APP有读权限没有写权限；系统应用可读可写，需要加android.permission.WRITE_SETTINGS权限可写
+Global：第三方APP有读权限没有写权限；系统应用可读可写，需要加android.permission.WRITE_SECURE_SETTINGS权限可写
 
 
 # 最简单的进程间通讯方式

@@ -94,6 +94,38 @@ public class DaemonTest {
 ## Callable
 有返回值的线程
 调用get方法时会阻塞调用线程
+
+应用场景： 更优雅的 用多线程方式 获取多个数据
+
+例如 一个接口 要做从3个数据库获取3种数据并返回  可以用3个线程来优化速度（runnable也可以，不优雅）
+原来需要10秒 现在只需要5秒 并且非常优雅的直接返回了数据
+
+```
+        ExecutorService executorService = Executors.newCachedThreadPool();
+        Future<String> future1 = executorService.submit(() -> {
+            Log.i("ThreadTest", "future1 start");
+            SystemClock.sleep(5 * 1000);
+            Log.i("ThreadTest", "future1 end");
+            return "result1";
+        });
+        Future<String> future2 = executorService.submit(() -> {
+            Log.i("ThreadTest", "future2 start");
+            SystemClock.sleep(2 * 1000);
+            Log.i("ThreadTest", "future2 end");
+            return "result2";
+        });
+        Future<String> future3 = executorService.submit(() -> {
+            Log.i("ThreadTest", "future3 start");
+            SystemClock.sleep(3 * 1000);
+            Log.i("ThreadTest", "future3 end");
+            return "result3";
+        });
+
+        future1.get();
+        future2.get();
+        future3.get();
+```
+
 ```
         ExecutorService executorService = Executors.newCachedThreadPool();
         Future<String> future = executorService.submit(() -> {
