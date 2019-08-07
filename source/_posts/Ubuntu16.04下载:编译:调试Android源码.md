@@ -201,6 +201,7 @@ AS加载完成后，查看目录Poject 列表下 红色的目录代表被 exclud
 File -> Project Structure 打开 Module，然后选中 Dependencies， 保留 JDK 跟 Module Source 项，并添加源码的 external 和 frameworks 依赖
 然后是 SDK 的设置，确保关联对应版本的 SDK 于系统版本一致 
 
+
 ### 遇到Android studio 不停 scanning files to index
 Open module setting --> Modules --> 找到gen文件夹  --> 右键选择Resources
 
