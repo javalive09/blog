@@ -1426,3 +1426,7 @@ CPU/GPU 向 Buffer 中生成图像，屏幕从 Buffer 中取图像、刷新后�
 
 ```
 最后导致子模块中所有的theme都被替换掉了，子模块中的activity生命周期都受到了影响，切换时不会调用onStop和onStart这些可见性的回调。
+通过以下方法查看visible可以判断activity可见性
+```
+adb shell dumpsys activity activities
+```
