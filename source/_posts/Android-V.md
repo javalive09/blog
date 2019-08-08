@@ -1410,3 +1410,19 @@ CPU/GPU 向 Buffer 中生成图像，屏幕从 Buffer 中取图像、刷新后�
 需要注意的是，第三个缓存并不是总是存在的，只要当需要的时候才会创建。之所以这样，是因为三缓存会显著增加用户输入到显示的延迟时间。如上图，帧 C 是在第 2 个刷新周期产生的，但却是在第 4 个周期显示的。最坏的情况下，你会同时遇到输入延迟和卡顿现象。
 
 
+# android:windowIsTranslucent的设置对activity 生命周期的影响
+遇到的问题
+
+## 主模块AndroidManifest中设置了如下代码:
+```
+    <application
+            ...
+            tools:replace="android:allowBackup, android:theme">
+```
+
+## 主模块style中设置了如下代码
+```
+<item name="android:windowIsTranslucent">true</item>
+
+```
+最后导致子模块中所有的theme都被替换掉了，子模块中的activity生命周期都受到了影响，切换时不会调用onStop和onStart这些可见性的回调。
