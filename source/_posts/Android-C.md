@@ -1,10 +1,11 @@
 ---
 title: Android-C
-date: 2014-04-28 11:45:07
+date: 2014-04-29 11:45:07
 tags:
 ---
 
 # activity
+
 ## activity launchmode
 ### 1.standard
 每次都是新的activity对象。

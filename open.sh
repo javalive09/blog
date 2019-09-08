@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-sleep 3
+sleep 5
 open http://localhost:4000
