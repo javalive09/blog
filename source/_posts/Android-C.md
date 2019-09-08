@@ -1226,7 +1226,15 @@ public class SettingsContentProvider extends ContentProvider {
 2. sdk = 1.5 串行，  sdk = 1.6 并行，  sdk >= 3.0 串行  串行的原因 是为了保证 多线程执行doinbackground（）方法里面并没有同步锁，当访问相同资源的时候会产生并发脏数据。
 
 
-
+# apk 文件结构
+## 1. AndroidManifest.xml
+## 2. classes.dex      // 源码
+## 3. res     // 资源文件
+## 4. resource.arsc    // 资源映射信息
+## 5. META-INFO
+### 1 MANIFEST.MF    // 文件摘要，所有文件的sha1哈希值列表
+### 2 CERT.SF     // 摘要签名，对MANIFEST.MF使用sha1-rsa算法用开发者私钥进行签名
+### 3 CERT.RSA    // 公钥信息
 
 
 
