@@ -1228,14 +1228,14 @@ public class SettingsContentProvider extends ContentProvider {
 
 
 # apk 文件结构
-## 1. AndroidManifest.xml
-## 2. classes.dex      // 源码
-## 3. res     // 资源文件
-## 4. resource.arsc    // 资源映射信息
-## 5. META-INFO
-### 1 MANIFEST.MF    // 文件摘要，所有文件的sha1哈希值列表
-### 2 CERT.SF     // 摘要签名，对MANIFEST.MF使用sha1-rsa算法用开发者私钥进行签名
-### 3 CERT.RSA    // 公钥信息
+#### 1. AndroidManifest.xml
+#### 2. classes.dex      // 源码
+#### 3. res     // 资源文件
+#### 4. resource.arsc    // 资源映射信息
+#### 5. META-INFO
+*  MANIFEST.MF    // 文件摘要，所有文件的sha1哈希值列表
+*  CERT.SF     // 摘要签名，对MANIFEST.MF使用sha1-rsa算法用开发者私钥进行签名
+*  CERT.RSA    // 公钥信息
 
 
 
