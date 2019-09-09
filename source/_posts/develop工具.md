@@ -194,3 +194,7 @@ ctrl + alt + ↓  copyline
 ctrl + alt + L  reformat code
 
 ```
+
+# Transmit
+[官网](https://panic.com/transmit/#download)
+一个好用的ssh ftp可视化客户端
