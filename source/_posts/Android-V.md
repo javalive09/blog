@@ -1430,3 +1430,8 @@ CPU/GPU 向 Buffer 中生成图像，屏幕从 Buffer 中取图像、刷新后�
 ```
 adb shell dumpsys activity activities
 ```
+
+# MotionEvent.ACTION_CANCEL的发出时机
+1. 当view被父view Intercept拦截后
+2. 当正在控制的view 被remove 掉后
+3. 当正在控制的view 所在的activity 被finish后
