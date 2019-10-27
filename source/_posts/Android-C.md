@@ -1237,6 +1237,39 @@ public class SettingsContentProvider extends ContentProvider {
 *  CERT.SF     // 摘要签名，对MANIFEST.MF使用sha1-rsa算法用开发者私钥进行签名
 *  CERT.RSA    // 公钥信息
 
+# android 消息机制
+
+## Looper
+    threadlocal
+    loop msg 
+    recycle msg
+
+## MessageQueue
+    when排序单向链表
+    SyncBarrier同步屏障
+    idleHandler
+
+## Handler
+    getIMessenger
+    默认looper
+    Async handler
+    回调顺序
+        1. msg callback
+        2.  1) handler callback 返回值可以拦截handlermessage
+            2) handlemessage
+
+## Message
+    Async message
+    缓存池，50链表
+    replyTo  Messenger
+        1.service: new Messenger(handler).getBinder()提供binder
+        2.client:  new Messenger(iBinder)获取messenger   message.replyTo = new Messager(hander);
+        3.双方收消息都使用 new Messager(handler)方式;
+
+
+
+
+
 
 
 
