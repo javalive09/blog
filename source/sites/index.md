@@ -16,4 +16,4 @@ date: 2017-02-13 18:07:08
 
 ------
 
-[Git权威指南](http://www.worldhello.net/gotgit/)&emsp;&emsp;[progit](http://iissnan.com/progit/)&emsp;&emsp;[gradle for android](https://segmentfault.com/a/1190000004229002)&emsp;&emsp;[Linux 命令大全](http://www.runoob.com/linux/linux-command-manual.html)&emsp;&emsp;[rfc文档](http://man.chinaunix.net/develop/rfc/default.htm)&emsp;&emsp;
+[Git权威指南](http://www.worldhello.net/gotgit/)&emsp;&emsp;[progit](http://iissnan.com/progit/)&emsp;&emsp;[gradle for android](https://segmentfault.com/a/1190000004229002)&emsp;&emsp;[Linux 命令大全](http://www.runoob.com/linux/linux-command-manual.html)&emsp;&emsp;[rfc文档](http://man.chinaunix.net/develop/rfc/default.htm)&emsp;&emsp;[ISO_8601时间标准](https://zh.wikipedia.org/wiki/ISO_8601)&emsp;&emsp;

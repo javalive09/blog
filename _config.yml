@@ -79,7 +79,7 @@ theme: themes-next
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:javalive09/javalive09.github.io.git
+  repo: git@github.com:javalive09/javalive09.github.io.git
   branch: master
 
 # speed up

@@ -216,6 +216,11 @@ protected void onCreate(Bundle savedInstanceState) {
       
 } 
 ```
+## idleHandler使用场景
+1. 在onDraw执行完后执行某一操作  onRender()。
+2. 结合HandlerThread，实现单线程消息通知器。比如多个消息接收完后，执行绘制操作
+
+
 ## activity中addContentView和setContentView的区别
 ### setContentView
 逻辑在PhoneWindow 类中
@@ -1268,8 +1273,30 @@ public class SettingsContentProvider extends ContentProvider {
 
 
 
+# AsyncTask 原理
+Handler + 线程池
+1. SERIAL_EXECUTOR 默认的Executor，串行执行
+2. THREAD_POOL_EXECUTOR 
+```
+    private static final int CORE_POOL_SIZE = Math.max(2, Math.min(CPU_COUNT - 1, 4));
+    private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;
+    private static final int KEEP_ALIVE_SECONDS = 30;
+    private static final BlockingQueue<Runnable> sPoolWorkQueue =
+            new LinkedBlockingQueue<Runnable>(128);
 
 
+ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
+                CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_SECONDS, TimeUnit.SECONDS,
+                sPoolWorkQueue, sThreadFactory);
+```
+核心线程数：（cpu_count - 1） 保证在[2, 4]区间
+最大线程数： cpu_count * 2 + 1
+keep alive 时间： 30 秒
+队列大小：128
 
+默认 AsyncTask是串行的 多个任务执行会阻塞
+使用并行的方式
+```
+new MyAsyncTask(progressBar).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
-
+```

@@ -144,6 +144,14 @@ public class DaemonTest {
         }
 ```
 
+## 线程本地变量ThreadLocal
+将多线程公共变量，变成线程私有变量
+如: Looper 中prepare方法 new了一个looper，并将Looper变成了线程本地变量
+set()
+get()
+![](/images/threadlocal.png)
+
+
 ------
 
 # IO流
