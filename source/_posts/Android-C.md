@@ -1233,28 +1233,34 @@ public class SettingsContentProvider extends ContentProvider {
 
 
 # apk 文件结构
-#### 1. AndroidManifest.xml
-#### 2. classes.dex      // 源码
-#### 3. res     // 资源文件
-#### 4. resource.arsc    // 资源映射信息
-#### 5. META-INFO
-*  MANIFEST.MF    // 文件摘要，所有文件的sha1哈希值列表
-*  CERT.SF     // 摘要签名，对MANIFEST.MF使用sha1-rsa算法用开发者私钥进行签名
-*  CERT.RSA    // 公钥信息
+ 1. AndroidManifest.xml
+ 2. classes.dex      // 源码
+ 3. res     // 资源文件
+ 4. resource.arsc    // 资源映射信息
+ 5. META-INFO
+ 5.1 MANIFEST.MF    // 文件摘要，所有文件的sha1哈希值列表
+ 5.2 CERT.SF     // 摘要签名，对MANIFEST.MF使用sha1-rsa算法用开发者私钥进行签名
+ 5.3 CERT.RSA    // 公钥信息
 
-# android 消息机制
+
+# Android 消息机制
 
 ## Looper
+
     threadlocal
     loop msg 
     recycle msg
+    
 
 ## MessageQueue
+
     when排序单向链表
     SyncBarrier同步屏障
     idleHandler
+ 
 
 ## Handler
+
     getIMessenger
     默认looper
     Async handler
@@ -1263,7 +1269,9 @@ public class SettingsContentProvider extends ContentProvider {
         2.  1) handler callback 返回值可以拦截handlermessage
             2) handlemessage
 
+
 ## Message
+
     Async message
     缓存池，50链表
     replyTo  Messenger
@@ -1274,9 +1282,11 @@ public class SettingsContentProvider extends ContentProvider {
 
 
 # AsyncTask 原理
+
 Handler + 线程池
 1. SERIAL_EXECUTOR 默认的Executor，串行执行
 2. THREAD_POOL_EXECUTOR 
+
 ```
     private static final int CORE_POOL_SIZE = Math.max(2, Math.min(CPU_COUNT - 1, 4));
     private static final int MAXIMUM_POOL_SIZE = CPU_COUNT * 2 + 1;
@@ -1289,6 +1299,7 @@ ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(
                 CORE_POOL_SIZE, MAXIMUM_POOL_SIZE, KEEP_ALIVE_SECONDS, TimeUnit.SECONDS,
                 sPoolWorkQueue, sThreadFactory);
 ```
+
 核心线程数：（cpu_count - 1） 保证在[2, 4]区间
 最大线程数： cpu_count * 2 + 1
 keep alive 时间： 30 秒
@@ -1296,6 +1307,7 @@ keep alive 时间： 30 秒
 
 默认 AsyncTask是串行的 多个任务执行会阻塞
 使用并行的方式
+
 ```
 new MyAsyncTask(progressBar).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
