@@ -198,3 +198,16 @@ ctrl + alt + L  reformat code
 # Transmit
 [官网](https://panic.com/transmit/#download)
 一个好用的ssh ftp可视化客户端
+
+# meld
+[官网](https://meldmerge.org/)
+一个好用的解决git 冲突的可视化工具
+```
+brew install Caskroom/cask/xquartz
+brew install pygtk
+brew cask install caskroom/cask/meld
+
+git config --global merge.tool meld
+git config --global mergetool.meld.path /usr/local/bin/meld
+```
+
