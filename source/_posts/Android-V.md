@@ -1425,11 +1425,32 @@ CPU/GPU 向 Buffer 中生成图像，屏幕从 Buffer 中取图像、刷新后�
 <item name="android:windowIsTranslucent">true</item>
 
 ```
+
 最后导致子模块中所有的theme都被替换掉了，子模块中的activity生命周期都受到了影响，切换时不会调用onStop和onStart这些可见性的回调。
 通过以下方法查看visible可以判断activity可见性
 ```
 adb shell dumpsys activity activities
 ```
+
+# 如果跟踪actvity 被谁打开被谁关闭
+
+## 跟踪打开
+```
+// 过滤log TAG  ActivityManager
+system_process I/ActivityManager: START u0 {flag=0x8000 cmp=com.xxx/xxx} from uid 10029
+
+```
+
+## 跟踪关闭
+```
+// 在activity finish() 方法中打印调用栈信息
+StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+for(StackTraceElement element : stackTraceElements) {
+    Log.i("peter", element.getClassName() + "/" + element.getMethodName() + "\n");
+}
+```
+
+
 
 # MotionEvent.ACTION_CANCEL的发出时机
 1. 当view被父view Intercept拦截后
