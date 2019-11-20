@@ -1411,6 +1411,7 @@ CPU/GPU 向 Buffer 中生成图像，屏幕从 Buffer 中取图像、刷新后�
 
 
 # android:windowIsTranslucent的设置对activity 生命周期的影响
+
 遇到的问题
 
 ## 主模块AndroidManifest中设置了如下代码:
@@ -1450,6 +1451,7 @@ for(StackTraceElement element : stackTraceElements) {
 }
 ```
 
+## android:windowIsFloating也有和android:windowIsTranslucent相同的问题
 
 
 # MotionEvent.ACTION_CANCEL的发出时机
