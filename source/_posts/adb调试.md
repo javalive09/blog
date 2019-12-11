@@ -133,6 +133,14 @@ adb shell wm density reset // 还原屏幕密度
 ```
 
 # prop 
+对应的文件为
+
+```
+init.rc
+default.prop
+/system/build.prop
+```
+
 ```
 adb shell getprop ro.build.version.release // 查询系统版本6.0.1 
 
