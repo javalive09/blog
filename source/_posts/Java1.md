@@ -426,8 +426,10 @@ gc线程工作时发现引用计数器为0的对象就会回收它。
 某个对象只有软引用时，当内存不够时，会回收这个对象。如果内存仍然不够则抛出内存溢出异常。
 ### 弱引用 WeakReference
 某个对象只有弱引用时，当gc线程回收的时候，它一定会被回收。
-### 幽灵引用 PhantomReference
-配合ReferenceQueue可以让我们准确地知道对象何时被从内存中删除。[codebag demo](https://github.com/javalive09/CodeBag/blob/master/sample/src/main/java/com/javalive09/sample/project/raventech/reference.java)
+### 虚引用 PhantomReference
+配合ReferenceQueue可以让我们准确地知道对象何时被从内存中删除。
+注: 虚引用在回收前会将对象放入引用队列，其他引用是回收后放入。
+[codebag demo](https://github.com/javalive09/CodeBag/blob/master/sample/src/main/java/com/javalive09/sample/project/raventech/reference.java)
 ```
     public class PhantomReferenceTest {
 	    public static void main(String... args){
