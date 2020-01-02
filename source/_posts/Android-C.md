@@ -1312,3 +1312,39 @@ keep alive 时间： 30 秒
 new MyAsyncTask(progressBar).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 ```
+
+# Application onCreate 在多进程情况下多次执行
+每个进程都会创建一个自己的application对象
+
+```
+   @Override
+    public void onCreate() {
+        super.onCreate();
+        String processName = getProcessName(this);
+        if (processName!= null) {
+            if(processName.equals("com.javalive09.demo")){
+                //以包名为进程名，项目默认的进程
+            } else if(processName.equals("com.javalive09.demo:api")){
+                //com.javalive09.demo:api
+            }else{
+
+            }
+        }
+    }
+
+    private String getProcessName(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo proInfo : runningApps) {
+            if (proInfo.pid == android.os.Process.myPid()) {
+                if (proInfo.processName != null) {
+                    return proInfo.processName;
+                }
+            }
+        }
+        return null;
+    }
+```
